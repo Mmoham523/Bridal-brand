@@ -1,0 +1,379 @@
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+import { Calendar, Clock, Video, MapPin, ChevronRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { toast } from '@/hooks/use-toast';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
+
+const consultationTypes = [
+  {
+    id: 'in-person',
+    title: 'In-Person Bridal Sizing',
+    icon: MapPin,
+    duration: '90 minutes',
+    price: '£50 deposit (redeemable on purchase)',
+    description: 'Visit our boutique for a comprehensive fitting experience with our expert stylists.',
+  },
+  {
+    id: 'virtual',
+    title: 'Virtual Sizing Consultation',
+    icon: Video,
+    duration: '45 minutes',
+    price: 'Free',
+    description: 'Connect with our team from the comfort of your home via video call.',
+  },
+];
+
+const faqItems = [
+  {
+    question: 'What happens if I need to reschedule?',
+    answer: 'We understand plans change! You can reschedule your appointment up to 24 hours before your booking at no extra charge. Simply contact us via email or phone.',
+  },
+  {
+    question: 'Is the deposit refundable?',
+    answer: 'The £50 deposit for in-person consultations is fully redeemable against any purchase. If you choose not to purchase, the deposit is non-refundable but can be transferred to a future booking.',
+  },
+  {
+    question: 'What should I bring to my appointment?',
+    answer: 'Please bring any inspiration images, your wedding shoes (or similar heel height), and any undergarments you plan to wear. If you have specific style preferences or measurements, bring those too!',
+  },
+  {
+    question: 'Can I bring guests?',
+    answer: 'Absolutely! We recommend bringing 1-2 trusted guests whose opinions you value. Our boutique has comfortable seating for your party.',
+  },
+];
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 }
+};
+
+export default function Consultation() {
+  const [selectedType, setSelectedType] = useState<string | null>(null);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    weddingDate: '',
+    height: '',
+    heelHeight: '',
+    bust: '',
+    waist: '',
+    hips: '',
+    styleLink: '',
+    notes: '',
+  });
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!selectedType) {
+      toast({
+        title: "Please select a consultation type",
+        description: "Choose between in-person or virtual consultation.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    toast({
+      title: "Booking request submitted!",
+      description: "We'll be in touch within 24 hours to confirm your appointment.",
+    });
+
+    // Reset form
+    setFormData({
+      name: '',
+      email: '',
+      phone: '',
+      weddingDate: '',
+      height: '',
+      heelHeight: '',
+      bust: '',
+      waist: '',
+      hips: '',
+      styleLink: '',
+      notes: '',
+    });
+    setSelectedType(null);
+  };
+
+  return (
+    <>
+      {/* Hero */}
+      <section className="bg-secondary/30 py-16 md:py-24">
+        <div className="section-container text-center">
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="heading-xl mb-4"
+          >
+            Book Your Consultation
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="body-lg max-w-2xl mx-auto"
+          >
+            Begin your bridal journey with a personalised fitting experience tailored just for you.
+          </motion.p>
+        </div>
+      </section>
+
+      {/* Consultation Types */}
+      <section className="section-spacing">
+        <div className="section-container">
+          <motion.h2
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+            className="heading-md text-center mb-12"
+          >
+            Choose Your Experience
+          </motion.h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-16">
+            {consultationTypes.map((type) => (
+              <motion.button
+                key={type.id}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeInUp}
+                onClick={() => setSelectedType(type.id)}
+                className={`text-left p-8 rounded-lg border-2 transition-all duration-300 hover-lift ${
+                  selectedType === type.id
+                    ? 'border-primary bg-primary shadow-card'
+                    : 'border-border'
+                }`}
+              >
+                <type.icon className="h-8 w-8 text-primary mb-4" />
+                <h3 className="heading-sm mb-2">{type.title}</h3>
+                <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
+                  <span className="flex items-center gap-1">
+                    <Clock className="h-4 w-4" />
+                    {type.duration}
+                  </span>
+                </div>
+                <p className="text-sm font-medium text-primary mb-3">{type.price}</p>
+                <p className="body-md text-sm">{type.description}</p>
+              </motion.button>
+            ))}
+          </div>
+
+          {/* Booking Form */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+            className="max-w-2xl mx-auto"
+          >
+            <div className="bg-card p-8 md:p-12 rounded-lg shadow-card">
+              <h3 className="heading-md mb-6">Your Details</h3>
+              
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium mb-2">Full Name *</label>
+                    <Input
+                      name="name"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-2">Email *</label>
+                    <Input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium mb-2">Phone Number</label>
+                    <Input
+                      type="tel"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-2">Wedding Date *</label>
+                    <Input
+                      type="date"
+                      name="weddingDate"
+                      value={formData.weddingDate}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="border-t border-border pt-6">
+                  <h4 className="font-heading text-lg font-medium mb-4">Measurements (Optional)</h4>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Providing measurements helps us prepare for your consultation.
+                  </p>
+                  
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium mb-2">Height (cm)</label>
+                      <Input
+                        name="height"
+                        value={formData.height}
+                        onChange={handleInputChange}
+                        placeholder="165"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium mb-2">Heel Height (cm)</label>
+                      <Input
+                        name="heelHeight"
+                        value={formData.heelHeight}
+                        onChange={handleInputChange}
+                        placeholder="8"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium mb-2">Bust (cm)</label>
+                      <Input
+                        name="bust"
+                        value={formData.bust}
+                        onChange={handleInputChange}
+                        placeholder="90"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium mb-2">Waist (cm)</label>
+                      <Input
+                        name="waist"
+                        value={formData.waist}
+                        onChange={handleInputChange}
+                        placeholder="70"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium mb-2">Hips (cm)</label>
+                      <Input
+                        name="hips"
+                        value={formData.hips}
+                        onChange={handleInputChange}
+                        placeholder="95"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium mb-2">Style Inspiration Link</label>
+                  <Input
+                    type="url"
+                    name="styleLink"
+                    value={formData.styleLink}
+                    onChange={handleInputChange}
+                    placeholder="Pinterest board or website URL"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium mb-2">Additional Notes</label>
+                  <Textarea
+                    name="notes"
+                    value={formData.notes}
+                    onChange={handleInputChange}
+                    rows={4}
+                    placeholder="Tell us about your dream dress, any specific requirements, or questions..."
+                  />
+                </div>
+
+                <Button type="submit" variant="hero" className="w-full">
+                  Request Booking
+                  <ChevronRight className="h-4 w-4 ml-2" />
+                </Button>
+              </form>
+            </div>
+
+            {/* What to Bring */}
+            <div className="mt-12 p-8 bg-secondary/30 rounded-lg">
+              <h4 className="heading-sm mb-4">What to Bring</h4>
+              <ul className="space-y-2 text-muted-foreground">
+                <li className="flex items-start gap-2">
+                  <span className="text-primary mt-1">•</span>
+                  Wedding shoes or heels of similar height
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-primary mt-1">•</span>
+                  Appropriate undergarments (strapless bra, shapewear if desired)
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-primary mt-1">•</span>
+                  Inspiration photos or Pinterest boards
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-primary mt-1">•</span>
+                  1-2 trusted friends or family members
+                </li>
+              </ul>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="section-spacing bg-secondary/30">
+        <div className="section-container">
+          <motion.h2
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+            className="heading-md text-center mb-12"
+          >
+            Consultation FAQs
+          </motion.h2>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+            className="max-w-2xl mx-auto"
+          >
+            <Accordion type="single" collapsible className="w-full">
+              {faqItems.map((item, index) => (
+                <AccordionItem key={index} value={`faq-${index}`}>
+                  <AccordionTrigger>{item.question}</AccordionTrigger>
+                  <AccordionContent>
+                    <p className="text-muted-foreground">{item.answer}</p>
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </motion.div>
+        </div>
+      </section>
+    </>
+  );
+}
