@@ -76,6 +76,8 @@ export default function Consultation() {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+  const ACUITY_SCHEDULING_URL = 'https://app.acuityscheduling.com/schedule.php?owner=37996403&appointmentType=87576849';
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -88,9 +90,12 @@ export default function Consultation() {
       return;
     }
 
+    // Redirect to Acuity Scheduling
+    window.open(ACUITY_SCHEDULING_URL, '_blank');
+    
     toast({
-      title: "Booking request submitted!",
-      description: "We'll be in touch within 24 hours to confirm your appointment.",
+      title: "Redirecting to booking...",
+      description: "You'll be taken to our scheduling system to complete your booking.",
     });
 
     // Reset form
@@ -157,20 +162,20 @@ export default function Consultation() {
                 onClick={() => setSelectedType(type.id)}
                 className={`text-left p-8 rounded-lg border-2 transition-all duration-300 hover-lift ${
                   selectedType === type.id
-                    ? 'border-primary bg-primary shadow-card'
-                    : 'border-border'
+                    ? 'border-primary bg-secondary shadow-card'
+                    : 'border-border bg-card'
                 }`}
               >
-                <type.icon className="h-8 w-8 text-primary mb-4" />
-                <h3 className="heading-sm mb-2">{type.title}</h3>
-                <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
+                <type.icon className="h-8 w-8 text-black mb-4" />
+                <h3 className="heading-sm mb-2 text-black">{type.title}</h3>
+                <div className="flex items-center gap-4 text-sm text-black mb-4">
                   <span className="flex items-center gap-1">
                     <Clock className="h-4 w-4" />
                     {type.duration}
                   </span>
                 </div>
-                <p className="text-sm font-medium text-primary mb-3">{type.price}</p>
-                <p className="body-md text-sm">{type.description}</p>
+                <p className="text-sm font-medium text-black mb-3">{type.price}</p>
+                <p className="body-md text-sm text-black">{type.description}</p>
               </motion.button>
             ))}
           </div>

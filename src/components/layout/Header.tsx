@@ -1,21 +1,23 @@
 import { Link } from 'react-router-dom';
-import { ShoppingBag, Menu, X } from 'lucide-react';
+import { ShoppingBag, Menu, X, Calculator } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/context/CartContext';
 import { cn } from '@/lib/utils';
+import logo from '@/assets/logo.png';
+import { QuickQuoteModal } from '@/components/quote/QuickQuoteModal';
 
 const navLinks = [
   { name: 'Home', href: '/' },
   { name: 'Shop', href: '/shop' },
-  { name: 'Book Consultation', href: '/consultation' },
+  { name: 'Gallery', href: '/gallery' },
   { name: 'About', href: '/about' },
-  { name: 'FAQs', href: '/faqs' },
   { name: 'Contact', href: '/contact' },
 ];
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
   const { toggleCart, totalItems } = useCart();
 
   return (
@@ -23,8 +25,12 @@ export function Header() {
       <nav className="section-container">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link to="/" className="font-heading text-2xl md:text-3xl font-medium tracking-tight">
-            Belle Bridal
+          <Link to="/" className="flex items-center">
+            <img 
+              src={logo} 
+              alt="Hiyam Bridal Logo" 
+              className="h-[104px] md:h-[124px] w-auto object-contain"
+            />
           </Link>
 
           {/* Desktop Navigation */}
@@ -45,6 +51,16 @@ export function Header() {
             <Button variant="navCta" className="hidden lg:inline-flex" asChild>
               <Link to="/consultation">Book Consultation</Link>
             </Button>
+
+            {/* Quick Quote Button */}
+            <button
+              onClick={() => setIsQuoteModalOpen(true)}
+              className="hidden lg:flex items-center gap-2 px-4 py-2 text-sm font-medium text-foreground hover:bg-accent rounded-full transition-colors"
+              aria-label="Get quick quote"
+            >
+              <Calculator className="h-4 w-4" />
+              <span>Quick Quote</span>
+            </button>
 
             {/* Cart Button */}
             <button
@@ -94,9 +110,23 @@ export function Header() {
                 Book Consultation
               </Link>
             </Button>
+            <Button 
+              variant="outline" 
+              className="mt-2" 
+              onClick={() => {
+                setIsMenuOpen(false);
+                setIsQuoteModalOpen(true);
+              }}
+            >
+              <Calculator className="h-4 w-4 mr-2" />
+              Quick Quote
+            </Button>
           </div>
         </div>
       </nav>
+
+      {/* Quick Quote Modal */}
+      <QuickQuoteModal open={isQuoteModalOpen} onOpenChange={setIsQuoteModalOpen} />
     </header>
   );
 }

@@ -11,16 +11,16 @@ const buttonVariants = cva(
       variant: {
         default: "bg-primary text-primary-foreground rounded-md",
         destructive: "bg-destructive text-destructive-foreground rounded-md",
-        outline: "border-2 border-primary bg-transparent text-foreground rounded-md",
+        outline: "border-2 border-primary bg-transparent text-foreground rounded-full",
         secondary: "bg-secondary text-secondary-foreground rounded-md",
         ghost: "bg-transparent rounded-md",
         link: "text-primary underline-offset-4 underline rounded-md",
         // Bridal specific variants
-        hero: "bg-primary text-primary-foreground px-8 py-6 text-base font-medium tracking-wide rounded-md",
-        heroOutline: "border-2 border-primary bg-transparent text-foreground px-8 py-6 text-base font-medium tracking-wide rounded-md",
+        hero: "bg-primary text-primary-foreground px-8 py-6 text-base font-medium tracking-wide rounded-full",
+        heroOutline: "border-2 border-primary bg-transparent text-foreground px-8 py-6 text-base font-medium tracking-wide rounded-full",
         nav: "text-foreground bg-transparent font-normal tracking-wide rounded-md",
         navCta: "bg-primary text-primary-foreground px-6 py-2 text-sm font-medium tracking-wide rounded-full",
-        addToCart: "bg-primary text-primary-foreground w-full py-3 rounded-md font-medium",
+        addToCart: "bg-primary text-primary-foreground w-full py-3 rounded-full font-medium",
         quickAdd: "bg-primary text-primary-foreground w-full py-2.5 text-sm font-medium opacity-0 group-hover:opacity-100 transition-all duration-300 rounded-b-md",
       },
       size: {

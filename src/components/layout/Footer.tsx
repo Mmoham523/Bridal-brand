@@ -1,32 +1,16 @@
 import { Link } from 'react-router-dom';
-import { Instagram, Facebook, Mail } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { useState } from 'react';
-import { toast } from '@/hooks/use-toast';
+import { Instagram, Mail } from 'lucide-react';
 
 export function Footer() {
-  const [email, setEmail] = useState('');
-
-  const handleNewsletterSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (email) {
-      toast({
-        title: "Thank you for subscribing",
-        description: "You'll receive our latest updates and exclusive offers.",
-      });
-      setEmail('');
-    }
-  };
 
   return (
     <footer className="bg-secondary/50 border-t border-border">
       <div className="section-container py-16 md:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-8">
           {/* Brand */}
           <div className="lg:col-span-1">
             <Link to="/" className="font-heading text-2xl font-medium tracking-tight">
-              Belle Bridal
+              Hiyam Bridal
             </Link>
             <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
               Timeless bridal wear crafted with love. Every piece designed to make your special day unforgettable.
@@ -42,16 +26,18 @@ export function Footer() {
                 <Instagram className="h-4 w-4" />
               </a>
               <a
-                href="https://facebook.com"
+                href="https://www.tiktok.com/@hiyam.bridal"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 bg-background rounded-full"
-                aria-label="Facebook"
+                aria-label="TikTok"
               >
-                <Facebook className="h-4 w-4" />
+                <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                </svg>
               </a>
               <a
-                href="mailto:hello@bellebridal.com"
+                href="mailto:hiyambridal@gmail.com"
                 className="p-2 bg-background rounded-full"
                 aria-label="Email"
               >
@@ -99,32 +85,12 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Newsletter */}
-          <div>
-            <h4 className="font-heading text-lg font-medium mb-4">Stay Updated</h4>
-            <p className="text-sm text-muted-foreground mb-4">
-              Subscribe for exclusive offers and bridal inspiration.
-            </p>
-            <form onSubmit={handleNewsletterSubmit} className="flex flex-col gap-3">
-              <Input
-                type="email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="bg-background"
-                required
-              />
-              <Button type="submit" variant="default" size="sm">
-                Subscribe
-              </Button>
-            </form>
-          </div>
         </div>
 
         {/* Bottom Bar */}
         <div className="mt-16 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Belle Bridal. All rights reserved.
+            © {new Date().getFullYear()} Hiyam Bridal. All rights reserved.
           </p>
           <div className="flex gap-6">
             <Link to="/privacy" className="text-xs text-muted-foreground hover:text-foreground transition-colors">

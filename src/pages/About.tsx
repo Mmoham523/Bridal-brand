@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Heart, Sparkles, Users } from 'lucide-react';
+import aboutImage from '@/assets/about.png';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -25,10 +26,16 @@ export default function About() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
               <h2 className="heading-md mb-6">Founded on Love</h2>
-              <p className="body-md mb-4">Belle Bridal was born from a simple belief: every bride deserves to feel extraordinary on her wedding day. Founded in 2018, we've dressed hundreds of brides in gowns crafted with meticulous attention to detail.</p>
+              <p className="body-md mb-4">Hiyam Bridal was born from a simple belief: every bride deserves to feel extraordinary on her wedding day. Founded in 2018, we've dressed hundreds of brides in diracs crafted with meticulous attention to detail.</p>
               <p className="body-md">Our boutique in the heart of the city offers an intimate, personalised experience where you're not just a customer—you're family.</p>
             </motion.div>
-            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="aspect-square bg-secondary rounded-lg" />
+            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="rounded-lg overflow-hidden">
+              <img 
+                src={aboutImage} 
+                alt="Hiyam Bridal boutique" 
+                className="w-full h-auto object-contain"
+              />
+            </motion.div>
           </div>
         </div>
       </section>
@@ -39,7 +46,7 @@ export default function About() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               { icon: Heart, title: 'Craftsmanship', desc: 'Every stitch made with love and precision.' },
-              { icon: Sparkles, title: 'Comfort', desc: 'Beautiful gowns that feel as good as they look.' },
+              { icon: Sparkles, title: 'Comfort', desc: 'Beautiful diracs that feel as good as they look.' },
               { icon: Users, title: 'Elegance', desc: 'Timeless designs that transcend trends.' },
             ].map((value) => (
               <motion.div key={value.title} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="text-center p-8 bg-card rounded-lg shadow-card">

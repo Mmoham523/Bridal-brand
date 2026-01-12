@@ -6,7 +6,7 @@ const faqCategories = [
     title: 'Sizing & Fit',
     items: [
       { q: 'How do I know my size?', a: 'We recommend booking a consultation for accurate measurements. Our sizes follow UK bridal standards.' },
-      { q: 'Can gowns be altered?', a: 'Yes, all our gowns can be altered. We recommend having alterations done 4-6 weeks before your wedding.' },
+      { q: 'Can diracs be altered?', a: 'Yes, all our diracs can be altered. We recommend having alterations done 4-6 weeks before your wedding.' },
     ]
   },
   {
@@ -20,7 +20,7 @@ const faqCategories = [
     title: 'Returns & Exchanges',
     items: [
       { q: 'What is your return policy?', a: 'Unworn items can be returned within 14 days. Custom orders are non-refundable.' },
-      { q: 'Can I exchange my gown?', a: 'Yes, exchanges are available within 14 days for unworn items in original packaging.' },
+      { q: 'Can I exchange my dirac?', a: 'Yes, exchanges are available within 14 days for unworn items in original packaging.' },
     ]
   },
 ];
