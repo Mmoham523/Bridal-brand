@@ -330,7 +330,7 @@ export default function Home() {
 
       {/* CTA Section */}
       <section className="py-8 md:py-12 bg-primary/90 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/80 via-primary to-primary/90" />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/80 to-primary" />
         <div className="section-container text-center relative z-10">
           <motion.div
             initial="hidden"
