@@ -25,7 +25,11 @@ export function Header() {
       <nav className="section-container">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center">
+          <Link 
+            to="/" 
+            className="flex items-center"
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          >
             <img 
               src={logo} 
               alt="Hiyam Bridal Logo" 
