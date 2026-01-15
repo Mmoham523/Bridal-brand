@@ -16,9 +16,9 @@
     --background: 30 8% 97%;
     --foreground: 0 0% 8%;
     
-    /* Bridal blush pink - #DFB7C5 (darkened for better contrast) */
-    --primary: 339 39% 60%;
-    --primary-hover: 339 39% 55%;
+    /* Bridal blush pink - #F7BBC2 */
+    --primary: 353 79% 85%;
+    --primary-hover: 353 79% 80%;
     --primary-foreground: 0 0% 100%;
     
     /* Soft cream for cards */
@@ -45,7 +45,7 @@
     /* Very light grey borders */
     --border: 0 0% 92%;
     --input: 0 0% 92%;
-    --ring: 339 39% 60%;
+    --ring: 353 79% 85%;
     
     --radius: 0.5rem;
     
@@ -55,7 +55,7 @@
     --shadow-hover: 0 8px 40px -12px hsl(0 0% 0% / 0.12);
     
     /* Typography */
-    --font-heading: 'Cormorant Garamond', Georgia, serif;
+    --font-heading: 'Granville', Georgia, serif;
     --font-body: 'Inter', system-ui, sans-serif;
     
     /* Spacing scale */
@@ -80,8 +80,8 @@
     --card-foreground: 0 0% 95%;
     --popover: 0 0% 6%;
     --popover-foreground: 0 0% 95%;
-    --primary: 339 39% 58%;
-    --primary-hover: 339 39% 52%;
+    --primary: 353 79% 85%;
+    --primary-hover: 353 79% 80%;
     --primary-foreground: 0 0% 100%;
     --secondary: 340 15% 12%;
     --secondary-foreground: 0 0% 95%;
@@ -93,7 +93,7 @@
     --destructive-foreground: 0 0% 95%;
     --border: 0 0% 15%;
     --input: 0 0% 15%;
-    --ring: 339 39% 58%;
+    --ring: 353 79% 85%;
   }
 }
 

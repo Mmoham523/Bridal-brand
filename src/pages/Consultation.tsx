@@ -56,11 +56,6 @@ export default function Consultation() {
     email: '',
     phone: '',
     weddingDate: '',
-    height: '',
-    heelHeight: '',
-    bust: '',
-    waist: '',
-    hips: '',
     styleLink: '',
     notes: '',
   });
@@ -101,11 +96,6 @@ export default function Consultation() {
       email: '',
       phone: '',
       weddingDate: '',
-      height: '',
-      heelHeight: '',
-      bust: '',
-      waist: '',
-      hips: '',
       styleLink: '',
       notes: '',
     });
@@ -229,61 +219,6 @@ export default function Consultation() {
                       onChange={handleInputChange}
                       required
                     />
-                  </div>
-                </div>
-
-                <div className="border-t border-border pt-6">
-                  <h4 className="font-heading text-lg font-medium mb-4">Measurements (Optional)</h4>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    Providing measurements helps us prepare for your consultation.
-                  </p>
-                  
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium mb-2">Height (cm)</label>
-                      <Input
-                        name="height"
-                        value={formData.height}
-                        onChange={handleInputChange}
-                        placeholder="165"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium mb-2">Heel Height (cm)</label>
-                      <Input
-                        name="heelHeight"
-                        value={formData.heelHeight}
-                        onChange={handleInputChange}
-                        placeholder="8"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium mb-2">Bust (cm)</label>
-                      <Input
-                        name="bust"
-                        value={formData.bust}
-                        onChange={handleInputChange}
-                        placeholder="90"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium mb-2">Waist (cm)</label>
-                      <Input
-                        name="waist"
-                        value={formData.waist}
-                        onChange={handleInputChange}
-                        placeholder="70"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium mb-2">Hips (cm)</label>
-                      <Input
-                        name="hips"
-                        value={formData.hips}
-                        onChange={handleInputChange}
-                        placeholder="95"
-                      />
-                    </div>
                   </div>
                 </div>
 

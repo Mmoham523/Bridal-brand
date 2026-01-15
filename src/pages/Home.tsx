@@ -68,6 +68,7 @@ export default function Home() {
             alt="Hiyam Bridal boutique interior with elegant wedding gowns"
             className="w-full h-full object-cover"
           />
+          <div className="absolute inset-0 bg-black/60" />
           <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/60 to-transparent" />
         </div>
         
@@ -78,10 +79,10 @@ export default function Home() {
             variants={stagger}
             className="max-w-2xl"
           >
-            <motion.h1 variants={fadeInUp} className="heading-xl mb-6">
-              Bridal dirac made to fit beautifully
+            <motion.h1 variants={fadeInUp} className="heading-xl mb-6 text-white">
+              BRIDAL DIRACS
             </motion.h1>
-            <motion.p variants={fadeInUp} className="body-lg mb-10 max-w-lg">
+            <motion.p variants={fadeInUp} className="body-lg mb-10 max-w-lg text-white">
               Shop timeless pieces or book a bridal sizing consultation. Every dirac crafted to celebrate your unique love story.
             </motion.p>
             <motion.div variants={fadeInUp} className="flex flex-wrap gap-4">
