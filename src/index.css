@@ -55,7 +55,7 @@
     --shadow-hover: 0 8px 40px -12px hsl(0 0% 0% / 0.12);
     
     /* Typography */
-    --font-heading: 'Granville', Georgia, serif;
+    --font-heading: 'Cormorant Garamond', 'Georgia', 'Times New Roman', serif;
     --font-body: 'Inter', system-ui, sans-serif;
     
     /* Spacing scale */

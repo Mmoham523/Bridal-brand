@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ZoomIn } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import burntOrangeOne from '@/assets/products/burnt-orange-one.jpg';
 import burntOrangeTwo from '@/assets/products/burnt-orange-two.jpg';
 import sageGreenOne from '@/assets/products/sage-green-one.jpg';
@@ -10,15 +11,24 @@ import product7 from '@/assets/products/product-5.png';
 import product9 from '@/assets/products/product-6.png';
 import product10 from '@/assets/products/product-7.png';
 
+type Collection = 'all' | 'burnt-orange' | 'sage-green' | 'elegant';
+
 const galleryImages = [
-  { id: 1, src: burntOrangeOne, alt: 'Bridal dirac in burnt orange', title: 'Elegant Burnt Orange Dirac' },
-  { id: 2, src: burntOrangeTwo, alt: 'Bridal dirac in burnt orange', title: 'Classic Burnt Orange Design' },
-  { id: 3, src: sageGreenOne, alt: 'Bridal dirac in sage green', title: 'Sophisticated Sage Green Dirac' },
-  { id: 4, src: sageGreenTwo, alt: 'Bridal dirac in sage green', title: 'Timeless Sage Green Elegance' },
-  { id: 5, src: sageGreenThree, alt: 'Bridal dirac in sage green', title: 'Modern Sage Green Design' },
-  { id: 6, src: product7, alt: 'Bridal dirac', title: 'Elegant Dirac Collection' },
-  { id: 7, src: product9, alt: 'Bridal dirac', title: 'Sophisticated Dirac Design' },
-  { id: 8, src: product10, alt: 'Bridal dirac', title: 'Timeless Dirac Elegance' },
+  { id: 1, src: burntOrangeOne, alt: 'Bridal dirac in burnt orange', title: 'Elegant Burnt Orange Dirac', collection: 'burnt-orange' as Collection },
+  { id: 2, src: burntOrangeTwo, alt: 'Bridal dirac in burnt orange', title: 'Classic Burnt Orange Design', collection: 'burnt-orange' as Collection },
+  { id: 3, src: sageGreenOne, alt: 'Bridal dirac in sage green', title: 'Sophisticated Sage Green Dirac', collection: 'sage-green' as Collection },
+  { id: 4, src: sageGreenTwo, alt: 'Bridal dirac in sage green', title: 'Timeless Sage Green Elegance', collection: 'sage-green' as Collection },
+  { id: 5, src: sageGreenThree, alt: 'Bridal dirac in sage green', title: 'Modern Sage Green Design', collection: 'sage-green' as Collection },
+  { id: 6, src: product7, alt: 'Bridal dirac', title: 'Elegant Dirac Collection', collection: 'elegant' as Collection },
+  { id: 7, src: product9, alt: 'Bridal dirac', title: 'Sophisticated Dirac Design', collection: 'elegant' as Collection },
+  { id: 8, src: product10, alt: 'Bridal dirac', title: 'Timeless Dirac Elegance', collection: 'elegant' as Collection },
+];
+
+const collections = [
+  { id: 'all' as Collection, name: 'All Collections' },
+  { id: 'burnt-orange' as Collection, name: 'Burnt Orange' },
+  { id: 'sage-green' as Collection, name: 'Sage Green' },
+  { id: 'elegant' as Collection, name: 'Elegant' },
 ];
 
 const fadeInUp = {
@@ -32,6 +42,13 @@ const stagger = {
 
 export default function Gallery() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
+  const [selectedCollection, setSelectedCollection] = useState<Collection>('all');
+
+  const filteredImages = useMemo(() => {
+    return galleryImages.filter(image => {
+      return selectedCollection === 'all' || image.collection === selectedCollection;
+    });
+  }, [selectedCollection]);
 
   const openLightbox = (imageId: number) => {
     setSelectedImage(imageId);
@@ -44,27 +61,27 @@ export default function Gallery() {
   const navigateImage = (direction: 'prev' | 'next') => {
     if (selectedImage === null) return;
     
-    const currentIndex = galleryImages.findIndex(img => img.id === selectedImage);
+    const currentIndex = filteredImages.findIndex(img => img.id === selectedImage);
     let newIndex: number;
     
     if (direction === 'next') {
-      newIndex = (currentIndex + 1) % galleryImages.length;
+      newIndex = (currentIndex + 1) % filteredImages.length;
     } else {
-      newIndex = currentIndex === 0 ? galleryImages.length - 1 : currentIndex - 1;
+      newIndex = currentIndex === 0 ? filteredImages.length - 1 : currentIndex - 1;
     }
     
-    setSelectedImage(galleryImages[newIndex].id);
+    setSelectedImage(filteredImages[newIndex].id);
   };
 
   return (
     <>
       {/* Hero */}
-      <section className="bg-secondary/30 py-16 md:py-24">
+      <section className="bg-secondary/30 py-12 md:py-16">
         <div className="section-container text-center">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="heading-xl mb-4"
+            className="heading-xl mb-3"
           >
             Our Gallery
           </motion.h1>
@@ -72,23 +89,58 @@ export default function Gallery() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="body-lg max-w-2xl mx-auto"
+            className="body-lg max-w-2xl mx-auto mb-6"
           >
             Explore our beautiful collection of bridal diracs, each crafted with exquisite attention to detail and timeless elegance.
           </motion.p>
+          
+          {/* Simple Filter Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="flex flex-wrap gap-3 justify-center"
+          >
+            {collections.map((collection) => (
+              <Button
+                key={collection.id}
+                variant={selectedCollection === collection.id ? 'default' : 'outline'}
+                onClick={() => setSelectedCollection(collection.id)}
+                className="rounded-full px-5 py-2"
+              >
+                {collection.name}
+              </Button>
+            ))}
+          </motion.div>
         </div>
       </section>
 
       {/* Gallery Grid */}
-      <section className="section-spacing">
+      <section className="py-6 md:py-8">
         <div className="section-container">
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={stagger}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-          >
-            {galleryImages.map((image, index) => (
+          {filteredImages.length === 0 ? (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="text-center py-16"
+            >
+              <p className="text-lg text-muted-foreground mb-4">No pieces found matching your search.</p>
+              <Button
+                variant="outline"
+                onClick={() => setSelectedCollection('all')}
+                className="rounded-full"
+              >
+                Clear Filters
+              </Button>
+            </motion.div>
+          ) : (
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={stagger}
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+            >
+              {filteredImages.map((image, index) => (
               <motion.div
                 key={image.id}
                 variants={fadeInUp}
@@ -107,8 +159,9 @@ export default function Gallery() {
                   <p className="text-white font-heading text-sm">{image.title}</p>
                 </div>
               </motion.div>
-            ))}
-          </motion.div>
+              ))}
+            </motion.div>
+          )}
         </div>
       </section>
 
@@ -139,14 +192,14 @@ export default function Gallery() {
 
               <div className="relative">
                 <img
-                  src={galleryImages.find(img => img.id === selectedImage)?.src}
-                  alt={galleryImages.find(img => img.id === selectedImage)?.alt}
+                  src={filteredImages.find(img => img.id === selectedImage)?.src}
+                  alt={filteredImages.find(img => img.id === selectedImage)?.alt}
                   className="w-full h-auto max-h-[90vh] object-contain rounded-lg"
                 />
                 
                 <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent rounded-b-lg">
                   <p className="text-white font-heading text-lg">
-                    {galleryImages.find(img => img.id === selectedImage)?.title}
+                    {filteredImages.find(img => img.id === selectedImage)?.title}
                   </p>
                 </div>
               </div>
@@ -180,7 +233,7 @@ export default function Gallery() {
 
               {/* Image Counter */}
               <div className="absolute top-4 left-4 bg-black/50 text-white px-4 py-2 rounded-full text-sm">
-                {galleryImages.findIndex(img => img.id === selectedImage) + 1} / {galleryImages.length}
+                {filteredImages.findIndex(img => img.id === selectedImage) + 1} / {filteredImages.length}
               </div>
             </motion.div>
           </motion.div>

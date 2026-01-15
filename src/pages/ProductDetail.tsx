@@ -36,7 +36,7 @@ export default function ProductDetail() {
 
   if (!product) {
     return (
-      <div className="section-container section-spacing text-center">
+      <div className="section-container py-12 text-center">
         <h1 className="heading-lg mb-4">Product Not Found</h1>
         <p className="body-md mb-8">The product you're looking for doesn't exist.</p>
         <Button variant="outline" asChild>

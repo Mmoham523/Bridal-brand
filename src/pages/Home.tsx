@@ -61,35 +61,54 @@ export default function Home() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center">
+      <section className="relative min-h-[90vh] flex items-center overflow-hidden">
         <div className="absolute inset-0">
-          <img
+          <motion.img
             src={heroImage}
             alt="Hiyam Bridal boutique interior with elegant wedding gowns"
             className="w-full h-full object-cover"
+            initial={{ scale: 1.3 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 2.5, ease: "easeOut" }}
           />
-          <div className="absolute inset-0 bg-black/60" />
-          <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/60 to-transparent" />
+          <div className="absolute inset-0 bg-black/30" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent" />
         </div>
         
-        <div className="section-container relative z-10 py-20">
+        <div className="section-container relative z-10 py-16 md:py-24">
           <motion.div
             initial="hidden"
             animate="visible"
             variants={stagger}
             className="max-w-2xl"
           >
-            <motion.h1 variants={fadeInUp} className="heading-xl mb-6 text-white">
+            <motion.h1 
+              variants={fadeInUp} 
+              className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 text-white leading-tight tracking-wider"
+              style={{ textShadow: '0 4px 20px rgba(0, 0, 0, 0.8), 0 2px 8px rgba(0, 0, 0, 0.6)' }}
+            >
               BRIDAL DIRACS
             </motion.h1>
-            <motion.p variants={fadeInUp} className="body-lg mb-10 max-w-lg text-white">
+            <motion.p 
+              variants={fadeInUp} 
+              className="text-lg md:text-xl mb-12 max-w-lg text-white leading-relaxed"
+              style={{ textShadow: '0 2px 12px rgba(0, 0, 0, 0.7), 0 1px 4px rgba(0, 0, 0, 0.5)' }}
+            >
               Shop timeless pieces or book a bridal sizing consultation. Every dirac crafted to celebrate your unique love story.
             </motion.p>
             <motion.div variants={fadeInUp} className="flex flex-wrap gap-4">
-              <Button variant="hero" asChild>
+              <Button 
+                variant="hero" 
+                asChild
+                className="shadow-lg hover:shadow-xl"
+              >
                 <Link to="/consultation">Book Consultation</Link>
               </Button>
-              <Button variant="heroOutline" asChild>
+              <Button 
+                variant="heroOutline" 
+                asChild
+                className="bg-white/10 backdrop-blur-sm border-white text-white hover:bg-white/20 hover:border-white"
+              >
                 <Link to="/shop">Shop the Collection</Link>
               </Button>
             </motion.div>
@@ -169,7 +188,7 @@ export default function Home() {
       </section> */}
 
       {/* How It Works */}
-      <section className="section-spacing bg-secondary/30">
+      <section className="py-8 md:py-12 bg-secondary/30">
         <div className="section-container">
           <motion.div
             initial="hidden"
@@ -212,7 +231,7 @@ export default function Home() {
       </section>
 
       {/* Testimonials */}
-      <section className="section-spacing">
+      <section className="py-8 md:py-12">
         <div className="section-container">
           <motion.div
             initial="hidden"
@@ -253,22 +272,23 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="section-spacing bg-primary">
-        <div className="section-container text-center">
+      <section className="py-8 md:py-12 bg-primary/90 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/80 via-primary to-primary/90" />
+        <div className="section-container text-center relative z-10">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={stagger}
           >
-            <motion.h2 variants={fadeInUp} className="heading-lg mb-4 text-white">
+            <motion.h2 variants={fadeInUp} className="heading-lg mb-4 text-foreground">
               Ready to Find Your Dream Dress?
             </motion.h2>
-            <motion.p variants={fadeInUp} className="body-md max-w-2xl mx-auto mb-8 text-white/90">
+            <motion.p variants={fadeInUp} className="body-md max-w-2xl mx-auto mb-8 text-foreground/90">
               Book a consultation with our expert stylists and begin your bridal journey.
             </motion.p>
             <motion.div variants={fadeInUp}>
-              <Button asChild className="bg-white text-primary hover:bg-white/90 px-8 py-6 text-base font-medium tracking-wide rounded-full">
+              <Button variant="hero" asChild className="shadow-lg">
                 <Link to="/consultation">Book Your Consultation</Link>
               </Button>
             </motion.div>

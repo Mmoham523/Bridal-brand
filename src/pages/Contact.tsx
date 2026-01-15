@@ -46,14 +46,14 @@ export default function Contact() {
 
   return (
     <>
-      <section className="bg-secondary/30 py-16 md:py-24">
+      <section className="bg-secondary/30 py-12 md:py-16">
         <div className="section-container text-center">
-          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="heading-xl mb-4">Contact Us</motion.h1>
-          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="body-lg max-w-2xl mx-auto">We'd love to hear from you. Get in touch with any questions.</motion.p>
+          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="heading-xl mb-3">Contact Us</motion.h1>
+          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="body-lg max-w-2xl mx-auto mb-6">We'd love to hear from you. Get in touch with any questions.</motion.p>
         </div>
       </section>
 
-      <section className="section-spacing">
+      <section className="py-8 md:py-12">
         <div className="section-container max-w-2xl">
           <div className="bg-card p-8 md:p-12 rounded-lg shadow-card mb-12">
             <form 

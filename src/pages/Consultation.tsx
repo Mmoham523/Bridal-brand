@@ -105,12 +105,12 @@ export default function Consultation() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-secondary/30 py-16 md:py-24">
+      <section className="bg-secondary/30 py-12 md:py-16">
         <div className="section-container text-center">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="heading-xl mb-4"
+            className="heading-xl mb-3"
           >
             Book Your Consultation
           </motion.h1>
@@ -118,7 +118,7 @@ export default function Consultation() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="body-lg max-w-2xl mx-auto"
+            className="body-lg max-w-2xl mx-auto mb-6"
           >
             Begin your bridal journey with a personalised fitting experience tailored just for you.
           </motion.p>
@@ -126,7 +126,7 @@ export default function Consultation() {
       </section>
 
       {/* Consultation Types */}
-      <section className="section-spacing">
+      <section className="py-8 md:py-12">
         <div className="section-container">
           <motion.h2
             initial="hidden"
@@ -153,15 +153,15 @@ export default function Consultation() {
                     : 'border-border bg-card'
                 }`}
               >
-                <type.icon className="h-8 w-8 text-black mb-4" />
-                <h3 className="heading-sm mb-2 text-black">{type.title}</h3>
-                <div className="flex items-center gap-4 text-sm text-black mb-4">
+                <type.icon className="h-8 w-8 text-foreground mb-4" />
+                <h3 className="heading-sm mb-2 text-foreground">{type.title}</h3>
+                <div className="flex items-center gap-4 text-sm text-foreground mb-4">
                   <span className="flex items-center gap-1">
                     <Clock className="h-4 w-4" />
                     {type.duration}
                   </span>
                 </div>
-                <p className="body-md text-sm text-black">{type.description}</p>
+                <p className="body-md text-sm text-foreground">{type.description}</p>
               </motion.button>
             ))}
           </div>
@@ -278,7 +278,7 @@ export default function Consultation() {
       </section>
 
       {/* FAQ */}
-      <section className="section-spacing bg-secondary/30">
+      <section className="py-8 md:py-12 bg-secondary/30">
         <div className="section-container">
           <motion.h2
             initial="hidden"

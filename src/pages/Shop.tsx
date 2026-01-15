@@ -12,7 +12,7 @@ export default function Shop() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-secondary/30 py-24 md:py-32">
+      <section className="bg-secondary/30 py-12 md:py-16">
         <div className="section-container">
           <motion.div
             initial="hidden"
