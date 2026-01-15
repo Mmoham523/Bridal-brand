@@ -34,6 +34,8 @@ export default function About() {
                 src={aboutImage} 
                 alt="Hiyam Bridal boutique" 
                 className="w-full h-auto object-contain"
+                loading="lazy"
+                decoding="async"
               />
             </motion.div>
           </div>

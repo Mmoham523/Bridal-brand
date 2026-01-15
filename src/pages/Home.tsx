@@ -35,15 +35,15 @@ const howItWorks = [
 
 const testimonials = [
   {
-    name: 'Emily R.',
+    name: 'Bride 2025',
     quote: 'The team at Hiyam Bridal made me feel like a princess. My dress fit perfectly and I received so many compliments.',
   },
   {
-    name: 'Sophie L.',
+    name: 'Bride 2025',
     quote: 'From consultation to delivery, the experience was absolutely seamless. I could not have asked for a more beautiful gown.',
   },
   {
-    name: 'Charlotte M.',
+    name: 'Bride 2025',
     quote: 'The attention to detail and craftsmanship is exceptional. My veil was exactly what I envisioned for my wedding day.',
   },
 ];
@@ -70,6 +70,8 @@ export default function Home() {
             initial={{ scale: 1.3 }}
             animate={{ scale: 1 }}
             transition={{ duration: 2.5, ease: "easeOut" }}
+            loading="eager"
+            fetchPriority="high"
           />
           <div className="absolute inset-0 bg-black/30" />
           <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent" />
@@ -149,6 +151,8 @@ export default function Home() {
                   src={image}
                   alt={`Bridal dirac ${index + 1}`}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
               </motion.div>

@@ -151,6 +151,8 @@ export default function Gallery() {
                   src={image.src}
                   alt={image.alt}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
                   <ZoomIn className="h-8 w-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -195,6 +197,7 @@ export default function Gallery() {
                   src={filteredImages.find(img => img.id === selectedImage)?.src}
                   alt={filteredImages.find(img => img.id === selectedImage)?.alt}
                   className="w-full h-auto max-h-[90vh] object-contain rounded-lg"
+                  loading="eager"
                 />
                 
                 <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent rounded-b-lg">
