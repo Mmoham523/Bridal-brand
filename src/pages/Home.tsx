@@ -116,6 +116,59 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Mini Gallery */}
+      <section className="py-12 md:py-16">
+        <div className="section-container">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+            className="text-center mb-8"
+          >
+            <h2 className="heading-lg mb-3">Our Collection</h2>
+            <p className="body-md text-muted-foreground max-w-2xl mx-auto">
+              Discover our exquisite bridal diracs, each crafted with timeless elegance
+            </p>
+          </motion.div>
+          
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={stagger}
+            className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8"
+          >
+            {productImages.slice(0, 4).map((image, index) => (
+              <motion.div
+                key={index}
+                variants={fadeInUp}
+                className="group relative aspect-[3/4] overflow-hidden rounded-lg cursor-pointer bg-secondary"
+              >
+                <img
+                  src={image}
+                  alt={`Bridal dirac ${index + 1}`}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+              </motion.div>
+            ))}
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+            className="text-center"
+          >
+            <Button variant="outline" asChild className="rounded-full">
+              <Link to="/gallery">View Full Gallery</Link>
+            </Button>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Trust Badges */}
       <section className="border-y border-border bg-secondary/30">
         <div className="section-container py-8">
@@ -281,14 +334,18 @@ export default function Home() {
             viewport={{ once: true }}
             variants={stagger}
           >
-            <motion.h2 variants={fadeInUp} className="heading-lg mb-4 text-foreground">
+            <motion.h2 variants={fadeInUp} className="heading-lg mb-4 text-white">
               Ready to Find Your Dream Dress?
             </motion.h2>
-            <motion.p variants={fadeInUp} className="body-md max-w-2xl mx-auto mb-8 text-foreground/90">
+            <motion.p variants={fadeInUp} className="body-md max-w-2xl mx-auto mb-8 text-white/90">
               Book a consultation with our expert stylists and begin your bridal journey.
             </motion.p>
             <motion.div variants={fadeInUp}>
-              <Button variant="hero" asChild className="shadow-lg">
+              <Button 
+                variant="secondary" 
+                asChild 
+                className="bg-white text-primary hover:bg-white/95 rounded-full px-8 py-6 text-base font-medium tracking-wide shadow-lg"
+              >
                 <Link to="/consultation">Book Your Consultation</Link>
               </Button>
             </motion.div>

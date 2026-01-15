@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Calculator, X } from 'lucide-react';
 import {
   Dialog,
@@ -24,6 +24,7 @@ interface QuickQuoteModalProps {
 }
 
 export function QuickQuoteModal({ open, onOpenChange }: QuickQuoteModalProps) {
+  const navigate = useNavigate();
   const [selectedCollection, setSelectedCollection] = useState<CollectionKey | null>(null);
   const [tailoring, setTailoring] = useState<'with' | 'without' | null>(null);
 
@@ -138,18 +139,22 @@ export function QuickQuoteModal({ open, onOpenChange }: QuickQuoteModalProps) {
             <Button
               variant="hero"
               className="flex-1"
-              asChild
-              onClick={() => onOpenChange(false)}
+              onClick={() => {
+                onOpenChange(false);
+                navigate('/consultation');
+              }}
             >
-              <Link to="/consultation">Book Consultation</Link>
+              Book Consultation
             </Button>
             <Button
               variant="outline"
               className="flex-1"
-              asChild
-              onClick={() => onOpenChange(false)}
+              onClick={() => {
+                onOpenChange(false);
+                navigate('/shop');
+              }}
             >
-              <Link to="/shop">View Shop</Link>
+              View Shop
             </Button>
           </div>
 

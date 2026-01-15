@@ -16,9 +16,9 @@
     --background: 30 8% 97%;
     --foreground: 0 0% 8%;
     
-    /* Bridal blush pink - #F7BBC2 */
-    --primary: 353 79% 85%;
-    --primary-hover: 353 79% 80%;
+    /* Bridal blush pink - #F28D99 */
+    --primary: 353 80% 75%;
+    --primary-hover: 353 80% 70%;
     --primary-foreground: 0 0% 100%;
     
     /* Soft cream for cards */
@@ -80,8 +80,9 @@
     --card-foreground: 0 0% 95%;
     --popover: 0 0% 6%;
     --popover-foreground: 0 0% 95%;
-    --primary: 353 79% 85%;
-    --primary-hover: 353 79% 80%;
+    /* Bridal blush pink - #F28D99 */
+    --primary: 353 80% 75%;
+    --primary-hover: 353 80% 70%;
     --primary-foreground: 0 0% 100%;
     --secondary: 340 15% 12%;
     --secondary-foreground: 0 0% 95%;
