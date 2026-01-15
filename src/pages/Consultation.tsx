@@ -40,7 +40,7 @@ const faqItems = [
   },
   {
     question: 'Can I bring guests?',
-    answer: 'Absolutely! We recommend bringing 1-2 trusted guests whose opinions you value. Our boutique has comfortable seating for your party.',
+    answer: 'Absolutely! You are welcome to bring guests whose opinions you value. Our boutique has comfortable seating for your party.',
   },
 ];
 
@@ -269,7 +269,7 @@ export default function Consultation() {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-primary mt-1">•</span>
-                  1-2 trusted friends or family members
+                  Trusted friends or family members (no limit)
                 </li>
               </ul>
             </div>

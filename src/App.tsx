@@ -14,6 +14,10 @@ import Consultation from "./pages/Consultation";
 import About from "./pages/About";
 import FAQs from "./pages/FAQs";
 import Contact from "./pages/Contact";
+import SizeGuide from "./pages/SizeGuide";
+import DeliveryReturns from "./pages/DeliveryReturns";
+import Privacy from "./pages/Privacy";
+import Terms from "./pages/Terms";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -36,6 +40,10 @@ const App = () => (
               <Route path="/about" element={<About />} />
               <Route path="/faqs" element={<FAQs />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/size-guide" element={<SizeGuide />} />
+              <Route path="/delivery-returns" element={<DeliveryReturns />} />
+              <Route path="/privacy" element={<Privacy />} />
+              <Route path="/terms" element={<Terms />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Layout>
