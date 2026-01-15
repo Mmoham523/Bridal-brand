@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Calendar, Clock, Video, MapPin, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -50,6 +50,7 @@ const fadeInUp = {
 };
 
 export default function Consultation() {
+  const formRef = useRef<HTMLDivElement>(null);
   const [selectedType, setSelectedType] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     name: '',
@@ -146,7 +147,13 @@ export default function Consultation() {
                 whileInView="visible"
                 viewport={{ once: true }}
                 variants={fadeInUp}
-                onClick={() => setSelectedType(type.id)}
+                onClick={() => {
+                  setSelectedType(type.id);
+                  // Scroll to form after a brief delay to allow state update
+                  setTimeout(() => {
+                    formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }, 100);
+                }}
                 className={`text-left p-8 rounded-lg border-2 transition-all duration-300 hover-lift ${
                   selectedType === type.id
                     ? 'border-primary bg-secondary shadow-card'
@@ -168,6 +175,7 @@ export default function Consultation() {
 
           {/* Booking Form */}
           <motion.div
+            ref={formRef}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}

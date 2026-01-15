@@ -82,7 +82,7 @@ export default function Home() {
             initial="hidden"
             animate="visible"
             variants={stagger}
-            className="max-w-2xl"
+            className="max-w-2xl text-center md:text-left"
           >
             <motion.h1 
               variants={fadeInUp} 
@@ -93,12 +93,12 @@ export default function Home() {
             </motion.h1>
             <motion.p 
               variants={fadeInUp} 
-              className="text-lg md:text-xl mb-12 max-w-lg text-white leading-relaxed"
+              className="text-lg md:text-xl mb-12 max-w-lg mx-auto md:mx-0 text-white leading-relaxed"
               style={{ textShadow: '0 2px 12px rgba(0, 0, 0, 0.7), 0 1px 4px rgba(0, 0, 0, 0.5)' }}
             >
               Shop timeless pieces or book a bridal sizing consultation. Every dirac crafted to celebrate your unique love story.
             </motion.p>
-            <motion.div variants={fadeInUp} className="flex flex-wrap gap-4">
+            <motion.div variants={fadeInUp} className="flex flex-wrap gap-4 justify-center md:justify-start">
               <Button 
                 variant="hero" 
                 asChild
