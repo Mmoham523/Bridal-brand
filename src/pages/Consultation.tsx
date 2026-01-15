@@ -18,7 +18,6 @@ const consultationTypes = [
     title: 'In-Person Bridal Sizing',
     icon: MapPin,
     duration: '90 minutes',
-    price: '£50 deposit (redeemable on purchase)',
     description: 'Visit our boutique for a comprehensive fitting experience with our expert stylists.',
   },
   {
@@ -26,7 +25,6 @@ const consultationTypes = [
     title: 'Virtual Sizing Consultation',
     icon: Video,
     duration: '45 minutes',
-    price: 'Free',
     description: 'Connect with our team from the comfort of your home via video call.',
   },
 ];
@@ -35,10 +33,6 @@ const faqItems = [
   {
     question: 'What happens if I need to reschedule?',
     answer: 'We understand plans change! You can reschedule your appointment up to 24 hours before your booking at no extra charge. Simply contact us via email or phone.',
-  },
-  {
-    question: 'Is the deposit refundable?',
-    answer: 'The £50 deposit for in-person consultations is fully redeemable against any purchase. If you choose not to purchase, the deposit is non-refundable but can be transferred to a future booking.',
   },
   {
     question: 'What should I bring to my appointment?',
@@ -76,7 +70,10 @@ export default function Consultation() {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const ACUITY_SCHEDULING_URL = 'https://app.acuityscheduling.com/schedule.php?owner=37996403&appointmentType=87576849';
+  const ACUITY_URLS = {
+    'in-person': 'https://app.acuityscheduling.com/schedule.php?owner=37996403&appointmentType=87576849',
+    'virtual': 'https://app.acuityscheduling.com/schedule.php?owner=37996403&appointmentType=87844286',
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -90,8 +87,8 @@ export default function Consultation() {
       return;
     }
 
-    // Redirect to Acuity Scheduling
-    window.open(ACUITY_SCHEDULING_URL, '_blank');
+    // Redirect to Acuity Scheduling based on selected type
+    window.open(ACUITY_URLS[selectedType as keyof typeof ACUITY_URLS], '_blank');
     
     toast({
       title: "Redirecting to booking...",
@@ -174,7 +171,6 @@ export default function Consultation() {
                     {type.duration}
                   </span>
                 </div>
-                <p className="text-sm font-medium text-black mb-3">{type.price}</p>
                 <p className="body-md text-sm text-black">{type.description}</p>
               </motion.button>
             ))}

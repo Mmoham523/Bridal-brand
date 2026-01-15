@@ -2,7 +2,24 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Heart, Gem, Ruler } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { ProductCard } from '@/components/product/ProductCard';
+import productsData from '@/data/products.json';
 import heroImage from '@/assets/hero-bridal.jpg';
+import burntOrangeOne from '@/assets/products/burnt-orange-one.jpg';
+import burntOrangeTwo from '@/assets/products/burnt-orange-two.jpg';
+import sageGreenOne from '@/assets/products/sage-green-one.jpg';
+import sageGreenTwo from '@/assets/products/sage-green-two.jpg';
+import sageGreenThree from '@/assets/products/sage-green-three.jpg';
+
+const productImages = [burntOrangeOne, burntOrangeTwo, sageGreenOne, sageGreenTwo, sageGreenThree];
+
+const featuredProducts = productsData.products
+  .filter(p => p.featured)
+  .slice(0, 6)
+  .map((product, index) => ({
+    ...product,
+    images: [productImages[index] || product.images[0]]
+  }));
 
 const trustBadges = [
   { icon: Heart, label: 'Handmade', description: 'Crafted with love' },
@@ -13,20 +30,20 @@ const trustBadges = [
 const howItWorks = [
   { step: '01', title: 'Book', description: 'Schedule your bridal consultation online or in-store' },
   { step: '02', title: 'Fit', description: 'Our expert stylists take your measurements and guide your selection' },
-  { step: '03', title: 'Receive', description: 'Your perfectly tailored dirac arrives ready for your special day' },
+  { step: '03', title: 'Receive', description: 'Your perfectly tailored gown arrives ready for your special day' },
 ];
 
 const testimonials = [
   {
-    name: 'Happy Customer',
+    name: 'Emily R.',
     quote: 'The team at Hiyam Bridal made me feel like a princess. My dress fit perfectly and I received so many compliments.',
   },
   {
-    name: 'Happy Customer',
-    quote: 'From consultation to delivery, the experience was absolutely seamless. I could not have asked for a more beautiful dirac.',
+    name: 'Sophie L.',
+    quote: 'From consultation to delivery, the experience was absolutely seamless. I could not have asked for a more beautiful gown.',
   },
   {
-    name: 'Happy Customer',
+    name: 'Charlotte M.',
     quote: 'The attention to detail and craftsmanship is exceptional. My veil was exactly what I envisioned for my wedding day.',
   },
 ];
@@ -48,7 +65,7 @@ export default function Home() {
         <div className="absolute inset-0">
           <img
             src={heroImage}
-            alt="Hiyam Bridal boutique interior with elegant wedding diracs"
+            alt="Hiyam Bridal boutique interior with elegant wedding gowns"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/60 to-transparent" />
@@ -105,6 +122,50 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+
+      {/* Featured Collection - Commented out for now, will use later */}
+      {/* <section className="section-spacing">
+        <div className="section-container">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeInUp}
+            className="text-center mb-16"
+          >
+            <h2 className="heading-lg mb-4">Featured Collection</h2>
+            <p className="body-md max-w-2xl mx-auto">
+              Discover our most beloved pieces, each one designed with timeless elegance in mind.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={stagger}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12"
+          >
+            {featuredProducts.map((product) => (
+              <motion.div key={product.id} variants={fadeInUp}>
+                <ProductCard product={product} />
+              </motion.div>
+            ))}
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+            className="text-center mt-12"
+          >
+            <Button variant="outline" size="lg" asChild>
+              <Link to="/shop">View All Collection</Link>
+            </Button>
+          </motion.div>
+        </div>
+      </section> */}
 
       {/* How It Works */}
       <section className="section-spacing bg-secondary/30">
@@ -199,14 +260,14 @@ export default function Home() {
             viewport={{ once: true }}
             variants={stagger}
           >
-            <motion.h2 variants={fadeInUp} className="heading-lg mb-4 text-primary-foreground">
+            <motion.h2 variants={fadeInUp} className="heading-lg mb-4 text-white">
               Ready to Find Your Dream Dress?
             </motion.h2>
-            <motion.p variants={fadeInUp} className="text-base leading-relaxed text-primary-foreground/90 max-w-2xl mx-auto mb-8">
+            <motion.p variants={fadeInUp} className="body-md max-w-2xl mx-auto mb-8 text-white/90">
               Book a consultation with our expert stylists and begin your bridal journey.
             </motion.p>
             <motion.div variants={fadeInUp}>
-              <Button variant="heroOutline" className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10" asChild>
+              <Button asChild className="bg-white text-primary hover:bg-white/90 px-8 py-6 text-base font-medium tracking-wide rounded-full">
                 <Link to="/consultation">Book Your Consultation</Link>
               </Button>
             </motion.div>

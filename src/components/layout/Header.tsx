@@ -62,8 +62,8 @@ export function Header() {
               <span>Quick Quote</span>
             </button>
 
-            {/* Cart Button */}
-            <button
+            {/* Cart Button - Uncomment when store is ready to open */}
+            {/* <button
               onClick={toggleCart}
               className="relative p-2 hover:bg-accent rounded-full transition-colors"
               aria-label="Open cart"
@@ -74,7 +74,7 @@ export function Header() {
                   {totalItems}
                 </span>
               )}
-            </button>
+            </button> */}
 
             {/* Mobile Menu Toggle */}
             <button

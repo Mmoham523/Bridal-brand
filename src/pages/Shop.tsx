@@ -36,13 +36,13 @@ export default function Shop() {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <Button variant="hero" size="lg" asChild>
+              <Button variant="hero" asChild className="min-w-[220px]">
                 <Link to="/gallery">
                   <ImageIcon className="h-5 w-5 mr-2" />
                   View Gallery
                 </Link>
               </Button>
-              <Button variant="heroOutline" size="lg" asChild>
+              <Button variant="heroOutline" asChild className="min-w-[220px]">
                 <Link to="/consultation">Book Consultation</Link>
               </Button>
             </div>
