@@ -91,36 +91,39 @@ export function Header() {
         <div
           className={cn(
             "lg:hidden overflow-hidden transition-all duration-300 ease-in-out",
-            isMenuOpen ? "max-h-96 pb-6" : "max-h-0"
+            isMenuOpen ? "max-h-[600px] pb-6" : "max-h-0"
           )}
         >
-          <div className="flex flex-col gap-4 pt-4 border-t border-border">
-            {navLinks.map((link) => (
+          <div className="relative bg-gradient-to-br from-primary/5 via-background to-primary/10 pt-6 pb-6 border-t border-border">
+            <div className="flex flex-col gap-0">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.name}
+                  to={link.href}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="text-base tracking-wide text-foreground hover:text-primary transition-all duration-200 px-4 py-3 hover:bg-primary/10 border-l-2 border-transparent hover:border-primary"
+                >
+                  {link.name}
+                </Link>
+              ))}
               <Link
-                key={link.name}
-                to={link.href}
+                to="/consultation"
                 onClick={() => setIsMenuOpen(false)}
-                className="text-base tracking-wide text-muted-foreground hover:text-foreground transition-colors py-2"
+                className="text-base tracking-wide text-foreground hover:text-primary transition-all duration-200 px-4 py-3 hover:bg-primary/10 border-l-2 border-transparent hover:border-primary"
               >
-                {link.name}
-              </Link>
-            ))}
-            <Button variant="default" className="mt-2" asChild>
-              <Link to="/consultation" onClick={() => setIsMenuOpen(false)}>
                 Book Consultation
               </Link>
-            </Button>
-            <Button 
-              variant="outline" 
-              className="mt-2" 
-              onClick={() => {
-                setIsMenuOpen(false);
-                setIsQuoteModalOpen(true);
-              }}
-            >
-              <Calculator className="h-4 w-4 mr-2" />
-              Quick Quote
-            </Button>
+              <button
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  setIsQuoteModalOpen(true);
+                }}
+                className="text-base tracking-wide text-foreground hover:text-primary transition-all duration-200 px-4 py-3 hover:bg-primary/10 border-l-2 border-transparent hover:border-primary text-left flex items-center gap-2"
+              >
+                <Calculator className="h-4 w-4" />
+                Quick Quote
+              </button>
+            </div>
           </div>
         </div>
       </nav>
