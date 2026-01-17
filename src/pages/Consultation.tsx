@@ -83,8 +83,27 @@ export default function Consultation() {
       return;
     }
 
-    // Redirect to Acuity Scheduling based on selected type
-    window.open(ACUITY_URLS[selectedType as keyof typeof ACUITY_URLS], '_blank');
+    // Split name into firstName and lastName
+    const nameParts = formData.name.trim().split(/\s+/);
+    const firstName = nameParts[0] || '';
+    const lastName = nameParts.slice(1).join(' ') || '';
+
+    // Build Acuity URL with query parameters
+    const baseUrl = ACUITY_URLS[selectedType as keyof typeof ACUITY_URLS];
+    const params = new URLSearchParams();
+    
+    // Add pre-fill parameters
+    if (firstName) params.append('firstName', firstName);
+    if (lastName) params.append('lastName', lastName);
+    if (formData.email) params.append('email', formData.email);
+    if (formData.phone) params.append('phone', formData.phone);
+
+    // Construct final URL with query parameters
+    const separator = baseUrl.includes('?') ? '&' : '?';
+    const acuityUrl = `${baseUrl}${separator}${params.toString()}`;
+
+    // Redirect to Acuity Scheduling with pre-filled data
+    window.open(acuityUrl, '_blank');
     
     toast({
       title: "Redirecting to booking...",

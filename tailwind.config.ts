@@ -61,7 +61,7 @@ export default {
       },
       fontFamily: {
         heading: ['Cormorant Garamond', 'Georgia', 'serif'],
-        body: ['Inter', 'system-ui', 'sans-serif'],
+        body: ['EB Garamond', 'Georgia', 'serif'],
       },
       borderRadius: {
         lg: "var(--radius)",

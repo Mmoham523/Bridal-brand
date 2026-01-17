@@ -2,9 +2,9 @@
 @import '@fontsource/cormorant-garamond/500.css';
 @import '@fontsource/cormorant-garamond/600.css';
 @import '@fontsource/cormorant-garamond/700.css';
-@import '@fontsource/inter/400.css';
-@import '@fontsource/inter/500.css';
-@import '@fontsource/inter/600.css';
+@import '@fontsource/eb-garamond/400.css';
+@import '@fontsource/eb-garamond/500.css';
+@import '@fontsource/eb-garamond/600.css';
 
 @tailwind base;
 @tailwind components;
@@ -56,7 +56,7 @@
     
     /* Typography */
     --font-heading: 'Cormorant Garamond', 'Georgia', 'Times New Roman', serif;
-    --font-body: 'Inter', system-ui, sans-serif;
+    --font-body: 'EB Garamond', 'Georgia', 'Times New Roman', serif;
     
     /* Spacing scale */
     --section-spacing: 6rem;
