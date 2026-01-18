@@ -4,7 +4,7 @@ import { Heart, Gem, Ruler } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ProductCard } from '@/components/product/ProductCard';
 import productsData from '@/data/products.json';
-import heroImage from '@/assets/hero-bridal.jpg';
+import heroImage from '@/assets/products/burnt-orange-two.jpg';
 import burntOrangeOne from '@/assets/products/burnt-orange-one.jpg';
 import burntOrangeTwo from '@/assets/products/burnt-orange-two.jpg';
 import sageGreenOne from '@/assets/products/sage-green-one.jpg';
