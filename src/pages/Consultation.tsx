@@ -253,9 +253,9 @@ export default function Consultation() {
             </div>
 
             {/* What to Bring */}
-            <div className="mt-12 p-8 bg-background rounded-lg">
+            <div className="mt-12 p-8 bg-background rounded-lg text-center">
               <h4 className="heading-sm mb-4">What to Bring</h4>
-              <ul className="space-y-2 text-muted-foreground">
+              <ul className="space-y-2 text-muted-foreground inline-block text-left">
                 <li className="flex items-start gap-2">
                   <span className="text-primary mt-1">•</span>
                   Wedding shoes or heels of similar height

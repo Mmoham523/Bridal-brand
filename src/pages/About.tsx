@@ -24,7 +24,7 @@ export default function About() {
       <section className="py-8 md:py-12">
         <div className="section-container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
+            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="text-center lg:text-left">
               <h2 className="heading-md mb-6">Founded on Love</h2>
               <p className="body-md mb-4">Hiyam Bridal was born from a simple belief: every bride deserves to feel extraordinary on her wedding day. Founded in 2018, we've dressed hundreds of brides in diracs crafted with meticulous attention to detail.</p>
               <p className="body-md">Our boutique in the heart of the city offers an intimate, personalised experience where you're not just a customer—you're family.</p>

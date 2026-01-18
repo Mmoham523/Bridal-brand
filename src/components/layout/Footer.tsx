@@ -8,14 +8,14 @@ export function Footer() {
       <div className="section-container py-16 md:py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-8">
           {/* Brand */}
-          <div className="lg:col-span-1">
+          <div className="lg:col-span-1 text-center md:text-left">
             <Link to="/" className="font-heading text-2xl font-medium tracking-tight">
               Hiyam Bridal
             </Link>
             <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
               Timeless bridal wear crafted with love. Every piece designed to make your special day unforgettable.
             </p>
-            <div className="flex gap-4 mt-6">
+            <div className="flex gap-4 mt-6 justify-center md:justify-start">
               <a
                 href="https://instagram.com"
                 target="_blank"

@@ -4,7 +4,7 @@ import { Heart, Gem, Ruler } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ProductCard } from '@/components/product/ProductCard';
 import productsData from '@/data/products.json';
-import heroImage from '@/assets/products/burnt-orange-two.jpg';
+import heroImage from '@/assets/new-bg.jpg';
 import burntOrangeOne from '@/assets/products/burnt-orange-one.jpg';
 import burntOrangeTwo from '@/assets/products/burnt-orange-two.jpg';
 import sageGreenOne from '@/assets/products/sage-green-one.jpg';
@@ -63,10 +63,22 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center overflow-hidden">
         <div className="absolute inset-0">
+          {/* Mobile Background */}
+          <motion.img
+            src={burntOrangeTwo}
+            alt="Hiyam Bridal boutique interior with elegant wedding gowns"
+            className="md:hidden w-full h-full object-cover"
+            initial={{ scale: 1.3 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 2.5, ease: "easeOut" }}
+            loading="eager"
+            fetchPriority="high"
+          />
+          {/* Desktop Background */}
           <motion.img
             src={heroImage}
             alt="Hiyam Bridal boutique interior with elegant wedding gowns"
-            className="w-full h-full object-cover"
+            className="hidden md:block w-full h-full object-cover"
             initial={{ scale: 1.3 }}
             animate={{ scale: 1 }}
             transition={{ duration: 2.5, ease: "easeOut" }}
@@ -86,10 +98,13 @@ export default function Home() {
           >
             <motion.h1 
               variants={fadeInUp} 
-              className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 text-primary-foreground leading-tight tracking-wider"
-              style={{ textShadow: '0 4px 20px rgba(0, 0, 0, 0.8), 0 2px 8px rgba(0, 0, 0, 0.6)' }}
+              className="text-5xl md:text-6xl lg:text-7xl font-heading mb-8 text-primary-foreground leading-tight tracking-wider"
+              style={{ 
+                fontWeight: 200,
+                textShadow: '0 4px 20px rgba(0, 0, 0, 0.8), 0 2px 8px rgba(0, 0, 0, 0.6)'
+              }}
             >
-              BRIDAL DIRACS
+              BRIDAL <span className="italic">DIRACS</span>
             </motion.h1>
             <motion.p 
               variants={fadeInUp} 
@@ -186,10 +201,10 @@ export default function Home() {
               <motion.div
                 key={badge.label}
                 variants={fadeInUp}
-                className="flex items-center justify-center gap-4 text-center md:text-left"
+                className="flex items-start justify-center gap-4 text-center md:text-left md:justify-start"
               >
-                <badge.icon className="h-8 w-8 text-primary flex-shrink-0" strokeWidth={1.5} />
-                <div>
+                <badge.icon className="h-8 w-8 text-primary flex-shrink-0 mt-0.5" strokeWidth={1.5} />
+                <div className="text-center md:text-left">
                   <p className="font-heading text-lg font-medium">{badge.label}</p>
                   <p className="text-sm text-muted-foreground">{badge.description}</p>
                 </div>
@@ -313,7 +328,7 @@ export default function Home() {
               <motion.div
                 key={testimonial.name}
                 variants={fadeInUp}
-                className="bg-card rounded-lg p-8 shadow-card hover-lift"
+                className="bg-card rounded-lg p-8 shadow-card hover-lift text-center"
               >
                 <blockquote className="text-foreground leading-relaxed mb-6">
                   "{testimonial.quote}"
