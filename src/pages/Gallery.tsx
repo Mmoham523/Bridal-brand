@@ -76,7 +76,7 @@ export default function Gallery() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-secondary/30 py-12 md:py-16">
+      <section className="bg-background py-12 md:py-16">
         <div className="section-container text-center">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -155,10 +155,10 @@ export default function Gallery() {
                   decoding="async"
                 />
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
-                  <ZoomIn className="h-8 w-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <ZoomIn className="h-8 w-8 text-primary-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <p className="text-white font-heading text-sm">{image.title}</p>
+                  <p className="text-primary-foreground font-heading text-sm">{image.title}</p>
                 </div>
               </motion.div>
               ))}
@@ -186,7 +186,7 @@ export default function Gallery() {
             >
               <button
                 onClick={closeLightbox}
-                className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors z-10"
+                className="absolute -top-12 right-0 text-primary-foreground hover:text-primary-foreground/70 transition-colors z-10"
                 aria-label="Close lightbox"
               >
                 <X className="h-8 w-8" />
@@ -201,7 +201,7 @@ export default function Gallery() {
                 />
                 
                 <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent rounded-b-lg">
-                  <p className="text-white font-heading text-lg">
+                  <p className="text-primary-foreground font-heading text-lg">
                     {filteredImages.find(img => img.id === selectedImage)?.title}
                   </p>
                 </div>
@@ -213,7 +213,7 @@ export default function Gallery() {
                   e.stopPropagation();
                   navigateImage('prev');
                 }}
-                className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 transition-colors bg-black/50 hover:bg-black/70 rounded-full p-3"
+                className="absolute left-4 top-1/2 -translate-y-1/2 text-primary-foreground hover:text-primary-foreground/70 transition-colors bg-black/50 hover:bg-black/70 rounded-full p-3"
                 aria-label="Previous image"
               >
                 <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -226,7 +226,7 @@ export default function Gallery() {
                   e.stopPropagation();
                   navigateImage('next');
                 }}
-                className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 transition-colors bg-black/50 hover:bg-black/70 rounded-full p-3"
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-primary-foreground hover:text-primary-foreground/70 transition-colors bg-black/50 hover:bg-black/70 rounded-full p-3"
                 aria-label="Next image"
               >
                 <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -235,7 +235,7 @@ export default function Gallery() {
               </button>
 
               {/* Image Counter */}
-              <div className="absolute top-4 left-4 bg-black/50 text-white px-4 py-2 rounded-full text-sm">
+              <div className="absolute top-4 left-4 bg-black/50 text-primary-foreground px-4 py-2 rounded-full text-sm">
                 {filteredImages.findIndex(img => img.id === selectedImage) + 1} / {filteredImages.length}
               </div>
             </motion.div>

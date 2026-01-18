@@ -10,7 +10,7 @@ export default function SizeGuide() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-secondary/30 py-12 md:py-16">
+      <section className="bg-background py-12 md:py-16">
         <div className="section-container text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -77,7 +77,7 @@ export default function SizeGuide() {
                       { size: '14', bust: '39', waist: '31', hips: '41' },
                       { size: '16', bust: '41', waist: '33', hips: '43' },
                     ].map((row) => (
-                      <tr key={row.size} className="border-b border-border hover:bg-secondary/30">
+                      <tr key={row.size} className="border-b border-border hover:bg-background">
                         <td className="py-3 px-4 font-medium">{row.size}</td>
                         <td className="py-3 px-4 text-muted-foreground">{row.bust}"</td>
                         <td className="py-3 px-4 text-muted-foreground">{row.waist}"</td>

@@ -12,40 +12,40 @@
 
 @layer base {
   :root {
-    /* Core palette */
-    --background: 30 8% 97%;
+    /* Core palette - Beige #F3ECE3 */
+    --background: 30 33% 92%;
     --foreground: 0 0% 8%;
     
-    /* Bridal blush pink - #F28D99 */
-    --primary: 353 80% 75%;
-    --primary-hover: 353 80% 70%;
-    --primary-foreground: 0 0% 100%;
+    /* Rosy pink - #C8A19C */
+    --primary: 8 28% 70%;
+    --primary-hover: 8 28% 65%;
+    --primary-foreground: 30 50% 98%;
     
-    /* Soft cream for cards */
-    --card: 30 10% 98%;
+    /* Cards - same beige as background for consistency */
+    --card: 30 33% 92%;
     --card-foreground: 0 0% 8%;
     
-    --popover: 30 8% 97%;
+    --popover: 30 33% 92%;
     --popover-foreground: 0 0% 8%;
     
-    /* Muted rose */
-    --secondary: 340 20% 96%;
+    /* Secondary - beige tone for subtle variations */
+    --secondary: 30 30% 90%;
     --secondary-foreground: 0 0% 15%;
     
-    --muted: 0 0% 96%;
+    --muted: 30 25% 88%;
     --muted-foreground: 0 0% 45%;
     
-    /* Light accent */
-    --accent: 340 30% 94%;
+    /* Light rosy accent */
+    --accent: 8 25% 85%;
     --accent-foreground: 0 0% 8%;
     
     --destructive: 0 72% 51%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive-foreground: 30 50% 98%;
     
-    /* Very light grey borders */
-    --border: 0 0% 92%;
-    --input: 0 0% 92%;
-    --ring: 353 79% 85%;
+    /* Soft borders with beige tone */
+    --border: 30 20% 86%;
+    --input: 30 20% 86%;
+    --ring: 8 35% 75%;
     
     --radius: 0.5rem;
     
@@ -62,15 +62,15 @@
     --section-spacing: 6rem;
     --container-padding: 1.5rem;
     
-    /* Sidebar (keeping defaults) */
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Sidebar - using beige palette */
+    --sidebar-background: 30 33% 94%;
+    --sidebar-foreground: 0 0% 15%;
+    --sidebar-primary: 8 28% 70%;
+    --sidebar-primary-foreground: 30 50% 98%;
+    --sidebar-accent: 8 20% 88%;
+    --sidebar-accent-foreground: 0 0% 15%;
+    --sidebar-border: 30 20% 86%;
+    --sidebar-ring: 8 35% 75%;
   }
 
   .dark {
@@ -80,21 +80,21 @@
     --card-foreground: 0 0% 95%;
     --popover: 0 0% 6%;
     --popover-foreground: 0 0% 95%;
-    /* Bridal blush pink - #F28D99 */
-    --primary: 353 80% 75%;
-    --primary-hover: 353 80% 70%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 340 15% 12%;
+    /* Rosy pink - #C8A19C */
+    --primary: 8 28% 70%;
+    --primary-hover: 8 28% 65%;
+    --primary-foreground: 30 50% 98%;
+    --secondary: 8 15% 12%;
     --secondary-foreground: 0 0% 95%;
     --muted: 0 0% 12%;
     --muted-foreground: 0 0% 60%;
-    --accent: 340 20% 15%;
+    --accent: 8 20% 15%;
     --accent-foreground: 0 0% 95%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 95%;
     --border: 0 0% 15%;
     --input: 0 0% 15%;
-    --ring: 353 79% 85%;
+    --ring: 8 35% 75%;
   }
 }
 
@@ -108,7 +108,7 @@
   }
 
   body {
-    @apply bg-background text-foreground antialiased;
+    @apply bg-background text-foreground antialiased text-lg;
     font-family: var(--font-body);
   }
 
@@ -148,11 +148,11 @@
   }
   
   .body-lg {
-    @apply text-lg leading-relaxed text-muted-foreground;
+    @apply text-xl leading-relaxed text-muted-foreground;
   }
   
   .body-md {
-    @apply text-base leading-relaxed text-muted-foreground;
+    @apply text-lg leading-relaxed text-muted-foreground;
   }
   
   .card-shadow {

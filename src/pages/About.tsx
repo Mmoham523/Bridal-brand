@@ -10,7 +10,7 @@ const fadeInUp = {
 export default function About() {
   return (
     <>
-      <section className="bg-secondary/30 py-12 md:py-16">
+      <section className="bg-background py-12 md:py-16">
         <div className="section-container text-center">
           <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="heading-xl mb-3">
             Our Story
@@ -42,7 +42,7 @@ export default function About() {
         </div>
       </section>
 
-      <section className="py-8 md:py-12 bg-secondary/30">
+      <section className="py-8 md:py-12 bg-background">
         <div className="section-container">
           <motion.h2 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="heading-md text-center mb-12">Our Values</motion.h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

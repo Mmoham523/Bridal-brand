@@ -86,14 +86,14 @@ export default function Home() {
           >
             <motion.h1 
               variants={fadeInUp} 
-              className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 text-white leading-tight tracking-wider"
+              className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 text-primary-foreground leading-tight tracking-wider"
               style={{ textShadow: '0 4px 20px rgba(0, 0, 0, 0.8), 0 2px 8px rgba(0, 0, 0, 0.6)' }}
             >
               BRIDAL DIRACS
             </motion.h1>
             <motion.p 
               variants={fadeInUp} 
-              className="text-lg md:text-xl mb-12 max-w-lg mx-auto md:mx-0 text-white leading-relaxed"
+              className="text-lg md:text-xl mb-12 max-w-lg mx-auto md:mx-0 text-primary-foreground leading-relaxed"
               style={{ textShadow: '0 2px 12px rgba(0, 0, 0, 0.7), 0 1px 4px rgba(0, 0, 0, 0.5)' }}
             >
               Shop timeless pieces or book a bridal sizing consultation. Every dirac crafted to celebrate your unique love story.
@@ -109,7 +109,6 @@ export default function Home() {
               <Button 
                 variant="heroOutline" 
                 asChild
-                className="bg-white/10 backdrop-blur-sm border-white text-white hover:bg-white/20 hover:border-white"
               >
                 <Link to="/shop">Shop the Collection</Link>
               </Button>
@@ -174,7 +173,7 @@ export default function Home() {
       </section>
 
       {/* Trust Badges */}
-      <section className="border-y border-border bg-secondary/30">
+      <section className="border-y border-border bg-background">
         <div className="section-container py-8">
           <motion.div
             initial="hidden"
@@ -245,7 +244,7 @@ export default function Home() {
       </section> */}
 
       {/* How It Works */}
-      <section className="py-8 md:py-12 bg-secondary/30">
+      <section className="py-8 md:py-12 bg-background">
         <div className="section-container">
           <motion.div
             initial="hidden"
@@ -338,17 +337,17 @@ export default function Home() {
             viewport={{ once: true }}
             variants={stagger}
           >
-            <motion.h2 variants={fadeInUp} className="heading-lg mb-4 text-white">
+            <motion.h2 variants={fadeInUp} className="heading-lg mb-4 text-primary-foreground">
               Ready to Find Your Dream Dress?
             </motion.h2>
-            <motion.p variants={fadeInUp} className="body-md max-w-2xl mx-auto mb-8 text-white/90">
+            <motion.p variants={fadeInUp} className="body-md max-w-2xl mx-auto mb-8 text-primary-foreground/90">
               Book a consultation with our expert stylists and begin your bridal journey.
             </motion.p>
             <motion.div variants={fadeInUp}>
               <Button 
                 variant="secondary" 
                 asChild 
-                className="bg-white text-primary hover:bg-white/95 rounded-full px-8 py-6 text-base font-medium tracking-wide shadow-lg"
+                className="px-8 py-6 text-base font-medium tracking-wide shadow-lg"
               >
                 <Link to="/consultation">Book Your Consultation</Link>
               </Button>

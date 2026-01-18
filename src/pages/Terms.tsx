@@ -10,7 +10,7 @@ export default function Terms() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-secondary/30 py-12 md:py-16">
+      <section className="bg-background py-12 md:py-16">
         <div className="section-container text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

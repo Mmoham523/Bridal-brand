@@ -73,7 +73,7 @@ export function ProductCard({ product }: ProductCardProps) {
           <div className="absolute bottom-0 left-0 right-0 p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <button
               onClick={handleQuickAdd}
-              className="w-full bg-primary text-white py-3 rounded-md text-sm font-medium hover:bg-primary-hover"
+              className="w-full bg-primary text-primary-foreground py-3 rounded-md text-sm font-medium hover:bg-primary-hover"
             >
               Quick Add
             </button>

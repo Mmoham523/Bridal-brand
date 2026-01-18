@@ -9,22 +9,23 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        // Primary: Pink background, white text
-        default: "bg-primary text-white rounded-full hover:bg-primary-hover",
-        // Secondary: White background, pink text
-        secondary: "bg-white text-primary rounded-full hover:bg-white/90",
-        // Outline: Transparent background, pink border, pink text
-        outline: "border-2 border-primary bg-transparent text-primary rounded-full hover:bg-primary/10",
+        // Primary: Rosy background, beige text
+        default: "bg-primary text-primary-foreground rounded-full hover:bg-primary-hover",
+        // Secondary: Beige background, rosy text
+        secondary: "bg-background text-primary rounded-full hover:bg-background/90",
+        // Outline: Beige background, rosy text, rosy border
+        outline: "border-2 border-primary bg-background text-primary rounded-full hover:bg-background/90",
         destructive: "bg-destructive text-destructive-foreground rounded-md",
-        ghost: "bg-transparent text-primary rounded-md hover:bg-primary/10",
+        // Ghost: Beige background on hover, rosy text
+        ghost: "bg-transparent text-primary rounded-md hover:bg-background",
         link: "text-primary underline-offset-4 underline rounded-md",
         // Bridal specific variants - all using brand colors
-        hero: "bg-primary text-white px-8 py-6 text-base font-medium tracking-wide rounded-full hover:bg-primary-hover",
-        heroOutline: "border-2 border-primary bg-transparent text-primary px-8 py-6 text-base font-medium tracking-wide rounded-full hover:bg-primary/10",
+        hero: "bg-primary text-primary-foreground px-8 py-6 text-base font-medium tracking-wide rounded-full hover:bg-primary-hover",
+        heroOutline: "border-2 border-primary bg-background text-primary px-8 py-6 text-base font-medium tracking-wide rounded-full hover:bg-background/90",
         nav: "text-foreground bg-transparent font-normal tracking-wide rounded-md hover:text-primary",
-        navCta: "bg-primary text-white px-6 py-2 text-sm font-medium tracking-wide rounded-full hover:bg-primary-hover",
-        addToCart: "bg-primary text-white w-full py-3 rounded-full font-medium hover:bg-primary-hover",
-        quickAdd: "bg-primary text-white w-full py-2.5 text-sm font-medium opacity-0 group-hover:opacity-100 transition-all duration-300 rounded-b-md",
+        navCta: "bg-primary text-primary-foreground px-6 py-2 text-sm font-medium tracking-wide rounded-full hover:bg-primary-hover",
+        addToCart: "bg-primary text-primary-foreground w-full py-3 rounded-full font-medium hover:bg-primary-hover",
+        quickAdd: "bg-primary text-primary-foreground w-full py-2.5 text-sm font-medium opacity-0 group-hover:opacity-100 transition-all duration-300 rounded-b-md",
       },
       size: {
         default: "h-10 px-4 py-2",

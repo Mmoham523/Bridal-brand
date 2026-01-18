@@ -59,7 +59,7 @@ export function Header() {
             {/* Quick Quote Button */}
             <button
               onClick={() => setIsQuoteModalOpen(true)}
-              className="hidden lg:flex items-center gap-2 px-4 py-2 text-sm font-medium text-foreground hover:bg-accent rounded-full transition-colors"
+              className="hidden lg:flex items-center gap-2 px-4 py-2 text-sm font-medium bg-background text-primary border-2 border-primary hover:bg-background/90 rounded-full transition-colors"
               aria-label="Get quick quote"
             >
               <Calculator className="h-4 w-4" />
@@ -122,7 +122,7 @@ export function Header() {
                   setIsMenuOpen(false);
                   setIsQuoteModalOpen(true);
                 }}
-                className="text-base tracking-wide text-foreground hover:text-primary transition-all duration-200 px-4 py-3 hover:bg-primary/10 border-l-2 border-transparent hover:border-primary text-left flex items-center gap-2"
+                className="text-base tracking-wide text-primary hover:text-primary/90 transition-all duration-200 px-4 py-3 bg-background border-l-2 border-primary text-left flex items-center gap-2"
               >
                 <Calculator className="h-4 w-4" />
                 Quick Quote

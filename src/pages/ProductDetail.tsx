@@ -215,15 +215,15 @@ export default function ProductDetail() {
 
           {/* Info Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-            <div className="flex items-center gap-3 p-4 bg-secondary/50 rounded-lg">
+            <div className="flex items-center gap-3 p-4 bg-background rounded-lg">
               <Truck className="h-5 w-5 text-primary flex-shrink-0" />
               <span className="text-sm">Free delivery over £1,500</span>
             </div>
-            <div className="flex items-center gap-3 p-4 bg-secondary/50 rounded-lg">
+            <div className="flex items-center gap-3 p-4 bg-background rounded-lg">
               <RefreshCw className="h-5 w-5 text-primary flex-shrink-0" />
               <span className="text-sm">14-day returns</span>
             </div>
-            <div className="flex items-center gap-3 p-4 bg-secondary/50 rounded-lg">
+            <div className="flex items-center gap-3 p-4 bg-background rounded-lg">
               <Sparkles className="h-5 w-5 text-primary flex-shrink-0" />
               <span className="text-sm">Handcrafted quality</span>
             </div>

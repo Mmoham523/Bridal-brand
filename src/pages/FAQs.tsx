@@ -28,7 +28,7 @@ const faqCategories = [
 export default function FAQs() {
   return (
     <>
-      <section className="bg-secondary/30 py-12 md:py-16">
+      <section className="bg-background py-12 md:py-16">
         <div className="section-container text-center">
           <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="heading-xl mb-3">Frequently Asked Questions</motion.h1>
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="body-lg max-w-2xl mx-auto mb-6">Find answers to common questions about our products and services.</motion.p>

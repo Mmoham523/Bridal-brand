@@ -57,8 +57,6 @@ export default function Consultation() {
     email: '',
     phone: '',
     weddingDate: '',
-    styleLink: '',
-    notes: '',
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -116,8 +114,6 @@ export default function Consultation() {
       email: '',
       phone: '',
       weddingDate: '',
-      styleLink: '',
-      notes: '',
     });
     setSelectedType(null);
   };
@@ -125,7 +121,7 @@ export default function Consultation() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-secondary/30 py-12 md:py-16">
+      <section className="bg-background py-12 md:py-16">
         <div className="section-container text-center">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -249,28 +245,6 @@ export default function Consultation() {
                   </div>
                 </div>
 
-                <div>
-                  <label className="block text-sm font-medium mb-2">Style Inspiration Link</label>
-                  <Input
-                    type="url"
-                    name="styleLink"
-                    value={formData.styleLink}
-                    onChange={handleInputChange}
-                    placeholder="Pinterest board or website URL"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium mb-2">Additional Notes</label>
-                  <Textarea
-                    name="notes"
-                    value={formData.notes}
-                    onChange={handleInputChange}
-                    rows={4}
-                    placeholder="Tell us about your dream dress, any specific requirements, or questions..."
-                  />
-                </div>
-
                 <Button type="submit" variant="hero" className="w-full">
                   Request Booking
                   <ChevronRight className="h-4 w-4 ml-2" />
@@ -279,7 +253,7 @@ export default function Consultation() {
             </div>
 
             {/* What to Bring */}
-            <div className="mt-12 p-8 bg-secondary/30 rounded-lg">
+            <div className="mt-12 p-8 bg-background rounded-lg">
               <h4 className="heading-sm mb-4">What to Bring</h4>
               <ul className="space-y-2 text-muted-foreground">
                 <li className="flex items-start gap-2">
@@ -305,7 +279,7 @@ export default function Consultation() {
       </section>
 
       {/* FAQ */}
-      <section className="py-8 md:py-12 bg-secondary/30">
+      <section className="py-8 md:py-12 bg-background">
         <div className="section-container">
           <motion.h2
             initial="hidden"
