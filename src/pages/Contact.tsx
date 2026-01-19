@@ -54,7 +54,7 @@ export default function Contact() {
 
       <section className="py-8 md:py-12">
         <div className="section-container max-w-2xl">
-          <div className="bg-card p-8 md:p-12 rounded-lg shadow-card mb-12">
+          <div className="p-8 md:p-12 rounded-lg shadow-card border border-primary/10 mb-12" style={{ backgroundColor: '#F3ECE3' }}>
             <form 
               name="contact" 
               method="POST" 

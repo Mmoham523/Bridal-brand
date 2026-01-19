@@ -51,7 +51,7 @@ export default function About() {
               { icon: Sparkles, title: 'Comfort', desc: 'Beautiful diracs that feel as good as they look.' },
               { icon: Users, title: 'Elegance', desc: 'Timeless designs that transcend trends.' },
             ].map((value) => (
-              <motion.div key={value.title} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="text-center p-8 bg-card rounded-lg shadow-card">
+              <motion.div key={value.title} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="text-center p-8 rounded-lg shadow-card" style={{ backgroundColor: '#F3ECE3' }}>
                 <value.icon className="h-10 w-10 text-primary mx-auto mb-4" />
                 <h3 className="heading-sm mb-2">{value.title}</h3>
                 <p className="body-md">{value.desc}</p>

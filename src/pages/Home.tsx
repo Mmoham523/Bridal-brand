@@ -98,9 +98,10 @@ export default function Home() {
           >
             <motion.h1 
               variants={fadeInUp} 
-              className="text-5xl md:text-6xl lg:text-7xl font-heading mb-8 text-primary-foreground leading-tight tracking-wider"
+              className="text-5xl md:text-6xl lg:text-7xl font-heading mb-8 leading-tight tracking-wider"
               style={{ 
                 fontWeight: 200,
+                color: '#F1ECE5',
                 textShadow: '0 4px 20px rgba(0, 0, 0, 0.8), 0 2px 8px rgba(0, 0, 0, 0.6)'
               }}
             >
@@ -328,7 +329,8 @@ export default function Home() {
               <motion.div
                 key={testimonial.name}
                 variants={fadeInUp}
-                className="bg-card rounded-lg p-8 shadow-card hover-lift text-center"
+                className="rounded-lg p-8 shadow-card hover-lift text-center"
+                style={{ backgroundColor: '#F3ECE3' }}
               >
                 <blockquote className="text-foreground leading-relaxed mb-6">
                   "{testimonial.quote}"

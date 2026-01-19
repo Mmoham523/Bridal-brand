@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Calendar, Clock, Video, MapPin, ChevronRight } from 'lucide-react';
+import { Clock, Video, MapPin, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -53,10 +53,10 @@ export default function Consultation() {
   const formRef = useRef<HTMLDivElement>(null);
   const [selectedType, setSelectedType] = useState<string | null>(null);
   const [formData, setFormData] = useState({
-    name: '',
+    firstName: '',
+    lastName: '',
     email: '',
     phone: '',
-    weddingDate: '',
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -81,18 +81,13 @@ export default function Consultation() {
       return;
     }
 
-    // Split name into firstName and lastName
-    const nameParts = formData.name.trim().split(/\s+/);
-    const firstName = nameParts[0] || '';
-    const lastName = nameParts.slice(1).join(' ') || '';
-
     // Build Acuity URL with query parameters
     const baseUrl = ACUITY_URLS[selectedType as keyof typeof ACUITY_URLS];
     const params = new URLSearchParams();
     
     // Add pre-fill parameters
-    if (firstName) params.append('firstName', firstName);
-    if (lastName) params.append('lastName', lastName);
+    if (formData.firstName) params.append('firstName', formData.firstName.trim());
+    if (formData.lastName) params.append('lastName', formData.lastName.trim());
     if (formData.email) params.append('email', formData.email);
     if (formData.phone) params.append('phone', formData.phone);
 
@@ -110,10 +105,10 @@ export default function Consultation() {
 
     // Reset form
     setFormData({
-      name: '',
+      firstName: '',
+      lastName: '',
       email: '',
       phone: '',
-      weddingDate: '',
     });
     setSelectedType(null);
   };
@@ -171,9 +166,10 @@ export default function Consultation() {
                 }}
                 className={`text-left p-8 rounded-lg border-2 transition-all duration-300 hover-lift ${
                   selectedType === type.id
-                    ? 'border-primary bg-secondary shadow-card'
-                    : 'border-border bg-card'
+                    ? 'border-primary shadow-card'
+                    : 'border-border'
                 }`}
+                style={{ backgroundColor: '#F3ECE3' }}
               >
                 <type.icon className="h-8 w-8 text-foreground mb-4" />
                 <h3 className="heading-sm mb-2 text-foreground">{type.title}</h3>
@@ -197,55 +193,53 @@ export default function Consultation() {
             variants={fadeInUp}
             className="max-w-2xl mx-auto"
           >
-            <div className="bg-card p-8 md:p-12 rounded-lg shadow-card">
+            <div className="p-8 md:p-12 rounded-lg shadow-card" style={{ backgroundColor: '#F3ECE3' }}>
               <h3 className="heading-md mb-6">Your Details</h3>
               
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium mb-2">Full Name *</label>
+                    <label className="block text-sm font-medium mb-2">First Name *</label>
                     <Input
-                      name="name"
-                      value={formData.name}
+                      name="firstName"
+                      value={formData.firstName}
                       onChange={handleInputChange}
                       required
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-2">Email *</label>
+                    <label className="block text-sm font-medium mb-2">Surname *</label>
                     <Input
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      required
-                    />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium mb-2">Phone Number</label>
-                    <Input
-                      type="tel"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleInputChange}
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium mb-2">Wedding Date *</label>
-                    <Input
-                      type="date"
-                      name="weddingDate"
-                      value={formData.weddingDate}
+                      name="lastName"
+                      value={formData.lastName}
                       onChange={handleInputChange}
                       required
                     />
                   </div>
                 </div>
 
-                <Button type="submit" variant="hero" className="w-full">
+                <div>
+                  <label className="block text-sm font-medium mb-2">Email *</label>
+                  <Input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium mb-2">Phone Number</label>
+                  <Input
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                  />
+                </div>
+
+                <Button type="submit" variant="hero" className="w-full text-[#F1ECE5] [&_svg]:text-[#F1ECE5]">
                   Request Booking
                   <ChevronRight className="h-4 w-4 ml-2" />
                 </Button>

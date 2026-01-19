@@ -43,7 +43,7 @@ export function Header() {
               <Link
                 key={link.name}
                 to={link.href}
-                className="text-sm tracking-wide text-muted-foreground hover:text-foreground transition-colors duration-200"
+                className="text-lg tracking-wide text-muted-foreground hover:text-foreground transition-colors duration-200"
               >
                 {link.name}
               </Link>
@@ -59,7 +59,7 @@ export function Header() {
             {/* Quick Quote Button */}
             <button
               onClick={() => setIsQuoteModalOpen(true)}
-              className="hidden lg:flex items-center gap-2 px-4 py-2 text-sm font-medium bg-background text-primary border-2 border-primary hover:bg-background/90 rounded-full transition-colors"
+              className="hidden lg:flex items-center gap-2 px-4 py-2 text-base font-medium bg-background text-[#737373] border-2 border-primary hover:bg-background/90 rounded-full transition-colors"
               aria-label="Get quick quote"
             >
               <Calculator className="h-4 w-4" />
@@ -105,28 +105,38 @@ export function Header() {
                   key={link.name}
                   to={link.href}
                   onClick={() => setIsMenuOpen(false)}
-                  className="text-base tracking-wide text-foreground hover:text-primary transition-all duration-200 px-4 py-3 hover:bg-primary/10 border-l-2 border-transparent hover:border-primary"
+                  className="text-xl tracking-wide text-foreground hover:text-primary transition-all duration-200 px-4 py-3 hover:bg-primary/10 border-l-2 border-transparent hover:border-primary"
                 >
                   {link.name}
                 </Link>
               ))}
-              <Link
-                to="/consultation"
-                onClick={() => setIsMenuOpen(false)}
-                className="text-base tracking-wide text-foreground hover:text-primary transition-all duration-200 px-4 py-3 hover:bg-primary/10 border-l-2 border-transparent hover:border-primary"
-              >
-                Book Consultation
-              </Link>
-              <button
-                onClick={() => {
-                  setIsMenuOpen(false);
-                  setIsQuoteModalOpen(true);
-                }}
-                className="text-base tracking-wide text-primary hover:text-primary/90 transition-all duration-200 px-4 py-3 bg-background border-l-2 border-primary text-left flex items-center gap-2"
-              >
-                <Calculator className="h-4 w-4" />
-                Quick Quote
-              </button>
+              <div className="px-4 py-2">
+                <Button
+                  variant="navCta"
+                  className="w-full justify-center"
+                  asChild
+                >
+                  <Link
+                    to="/consultation"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Book Consultation
+                  </Link>
+                </Button>
+              </div>
+              <div className="px-4 py-2">
+                <Button
+                  variant="outline"
+                  className="w-full justify-center"
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                    setIsQuoteModalOpen(true);
+                  }}
+                >
+                  <Calculator className="h-4 w-4" />
+                  Quick Quote
+                </Button>
+              </div>
             </div>
           </div>
         </div>
