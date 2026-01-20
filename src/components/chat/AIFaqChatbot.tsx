@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useMemo } from 'react';
+import { useState, useRef, useEffect, useMemo, forwardRef, useImperativeHandle } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageSquare, X, Minimize2, Send, Bot } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -15,6 +15,10 @@ interface AIFaqChatbotProps {
   position?: 'bottom-right' | 'bottom-left';
 }
 
+export interface AIFaqChatbotHandle {
+  openChat: () => void;
+}
+
 const ACUITY_APPOINTMENT_TYPES = {
   'in-person': 87576849,
   'virtual': 87844286,
@@ -27,10 +31,10 @@ const INITIAL_GREETING: MessageType = {
   timestamp: new Date(),
 };
 
-export function AIFaqChatbot({ 
+export const AIFaqChatbot = forwardRef<AIFaqChatbotHandle, AIFaqChatbotProps>(({ 
   companyName = 'Hiyam Bridal',
   position = 'bottom-right'
-}: AIFaqChatbotProps) {
+}, ref) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
   const [messages, setMessages] = useState<MessageType[]>([INITIAL_GREETING]);
@@ -65,6 +69,14 @@ export function AIFaqChatbot({
       setTimeout(() => inputRef.current?.focus(), 100);
     }
   }, [messages, isOpen, isMinimized]);
+
+  // Expose openChat function via ref
+  useImperativeHandle(ref, () => ({
+    openChat: () => {
+      setIsOpen(true);
+      setIsMinimized(false);
+    }
+  }));
 
   // Memoize quick questions display logic to prevent re-renders while typing
   const quickQuestionsDisplay = useMemo(() => {
@@ -1091,4 +1103,6 @@ export function AIFaqChatbot({
       </AnimatePresence>
     </>
   );
-}
+});
+
+AIFaqChatbot.displayName = 'AIFaqChatbot';
