@@ -64,14 +64,22 @@ export const handler: Handler = async (event) => {
     const apiKey = process.env.ACUITY_API_KEY;
 
     if (!userId || !apiKey) {
-      console.error('Acuity credentials not configured');
+      console.error('Acuity credentials not configured', {
+        hasUserId: !!userId,
+        hasApiKey: !!apiKey,
+        userIdLength: userId?.length || 0,
+        apiKeyLength: apiKey?.length || 0,
+      });
       return {
         statusCode: 500,
         headers: {
           'Access-Control-Allow-Origin': '*',
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ error: 'Server configuration error' }),
+        body: JSON.stringify({ 
+          error: 'Server configuration error',
+          details: 'Missing ACUITY_USER_ID or ACUITY_API_KEY environment variables',
+        }),
       };
     }
 
@@ -106,28 +114,76 @@ export const handler: Handler = async (event) => {
       };
     }
 
-    // Build Acuity API URL
+    // Build Acuity API URL for GET /availability/times
+    // This endpoint returns available time slots for a date range
+    // Documentation: https://developers.acuityscheduling.com/docs
     const acuityUrl = new URL('https://acuityscheduling.com/api/v1/availability/times');
     acuityUrl.searchParams.append('appointmentTypeID', appointmentTypeId);
     acuityUrl.searchParams.append('date', date);
     if (endDate && endDate !== date) {
       acuityUrl.searchParams.append('endDate', endDate);
     }
+    // Timezone is optional but recommended - using Europe/London as default
     acuityUrl.searchParams.append('timezone', 'Europe/London');
 
-    // Call Acuity API
+    // Log request details (without exposing API key)
+    console.log('Acuity API Request:', {
+      url: acuityUrl.toString().replace(/apiKey=[^&]*/, 'apiKey=***'),
+      appointmentTypeID: appointmentTypeId,
+      date,
+      endDate,
+      hasUserId: !!userId,
+      hasApiKey: !!apiKey,
+    });
+
+    // Call Acuity API - Using HTTP Basic Auth as per Acuity docs
+    // Format: Basic base64(userId:apiKey)
     const auth = Buffer.from(`${userId}:${apiKey}`).toString('base64');
+    
+    console.log('Making Acuity API call with Basic Auth', {
+      url: acuityUrl.toString(),
+      hasAuth: !!auth,
+      authLength: auth.length,
+    });
+    
     const response = await fetch(acuityUrl.toString(), {
       method: 'GET',
       headers: {
         'Authorization': `Basic ${auth}`,
-        'Content-Type': 'application/json',
+        'Accept': 'application/json',
       },
     });
 
+    console.log('Acuity API Response:', {
+      status: response.status,
+      statusText: response.statusText,
+      ok: response.ok,
+    });
+
     if (!response.ok) {
-      const errorText = await response.text();
-      console.error('Acuity API error:', response.status, errorText);
+      let errorText = '';
+      let errorData: any = {};
+      
+      try {
+        errorText = await response.text();
+        // Try to parse as JSON
+        try {
+          errorData = JSON.parse(errorText);
+        } catch {
+          // Not JSON, use as text
+          errorData = { message: errorText };
+        }
+      } catch (e) {
+        errorText = 'Unknown error';
+        errorData = { message: 'Failed to read error response' };
+      }
+      
+      console.error('Acuity API error:', {
+        status: response.status,
+        statusText: response.statusText,
+        errorText: errorText.substring(0, 500),
+        url: acuityUrl.toString().replace(/apiKey=[^&]*/, 'apiKey=***'),
+      });
       
       // Handle rate limiting
       if (response.status === 429) {
@@ -143,6 +199,9 @@ export const handler: Handler = async (event) => {
         };
       }
 
+      // Return more detailed error for debugging
+      const errorMessage = errorData.message || errorData.error || 'Unable to fetch availability. Please try again later.';
+
       return {
         statusCode: response.status,
         headers: {
@@ -150,7 +209,9 @@ export const handler: Handler = async (event) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ 
-          error: 'Unable to fetch availability. Please try again later.',
+          error: errorMessage,
+          status: response.status,
+          details: errorText.substring(0, 500), // First 500 chars of error
         }),
       };
     }
@@ -174,6 +235,7 @@ export const handler: Handler = async (event) => {
     };
   } catch (error) {
     console.error('Function error:', error);
+    const errorMessage = error instanceof Error ? error.message : String(error);
     
     return {
       statusCode: 500,
@@ -183,6 +245,7 @@ export const handler: Handler = async (event) => {
       },
       body: JSON.stringify({ 
         error: 'An unexpected error occurred. Please try again later.',
+        details: errorMessage,
       }),
     };
   }

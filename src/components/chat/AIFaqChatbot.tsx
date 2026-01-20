@@ -385,7 +385,8 @@ export function AIFaqChatbot({
       const errorMessage: MessageType = {
         id: (Date.now() + 1).toString(),
         role: 'assistant',
-        content: "I'm having trouble checking availability right now. Please try again in a moment or contact us directly.",
+        content:
+          "I'm having trouble checking availability right now. Please try again in a moment, or you can book directly via our Consultation page here: /consultation.",
         timestamp: new Date(),
       };
       setMessages(prev => [...prev, errorMessage]);
@@ -665,16 +666,17 @@ export function AIFaqChatbot({
               setMessages(prev => [...prev, slotsMessage]);
               setBookingState('selecting');
             }
-          } catch (error: any) {
-            const errorMessage: MessageType = {
-              id: (Date.now() + 1).toString(),
-              role: 'assistant',
-              content: "I'm having trouble checking availability right now. Please try again in a moment or contact us directly.",
-              timestamp: new Date(),
-            };
-            setMessages(prev => [...prev, errorMessage]);
-            setBookingState(null);
-          }
+        } catch (error: any) {
+          const errorMessage: MessageType = {
+            id: (Date.now() + 1).toString(),
+            role: 'assistant',
+            content:
+              "I'm having trouble checking availability right now. Please try again in a moment, or you can book directly via our Consultation page here: /consultation.",
+            timestamp: new Date(),
+          };
+          setMessages(prev => [...prev, errorMessage]);
+          setBookingState(null);
+        }
 
           setIsLoading(false);
           return;
