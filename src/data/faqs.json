@@ -40,7 +40,7 @@
       "id": "consultation-1",
       "category": "Consultations",
       "question": "How do I book a consultation?",
-      "answer": "You can book a consultation through our Consultation page. We offer both in-person and virtual consultations. Simply fill out the form and select your preferred consultation type."
+      "answer": "You can book a consultation through our [Book here](/consultation). We offer both in-person and virtual consultations. Simply fill out the form and select your preferred consultation type."
     },
     {
       "id": "consultation-2",
@@ -70,7 +70,7 @@
       "id": "general-12",
       "category": "General",
       "question": "Where is your boutique?",
-      "answer": "Our boutique is at Unit 4, Bilqees Mall, 11a Walford Rd, Sparkbrook, Birmingham B11 1NP. We offer both in-person and virtual consultations - you can book through our Consultation page."
+      "answer": "Our boutique is at Unit 4, Bilqees Mall, 11a Walford Rd, Sparkbrook, Birmingham B11 1NP. We offer both in-person and virtual consultations - you can book through our [Book here](/consultation)."
     },
     {
       "id": "general-13",
@@ -196,19 +196,19 @@
       "id": "consultation-5",
       "category": "Consultations",
       "question": "What are your availability times?",
-      "answer": "Our consultation availability times are: Monday to Friday: 5:00 PM - 7:00 PM, Saturday and Sunday: 11:00 AM - 7:00 PM. You can book a consultation through our Consultation page."
+      "answer": "Our consultation availability times are: Monday to Friday: 5:00 PM - 7:00 PM, Saturday and Sunday: 11:00 AM - 7:00 PM. You can book a consultation through our [Book here](/consultation)."
     },
     {
       "id": "consultation-6",
       "category": "Consultations",
       "question": "When are you available for consultations?",
-      "answer": "We're available for consultations Monday to Friday from 5:00 PM to 7:00 PM, and on weekends (Saturday and Sunday) from 11:00 AM to 7:00 PM. Book your consultation through our Consultation page."
+      "answer": "We're available for consultations Monday to Friday from 5:00 PM to 7:00 PM, and on weekends (Saturday and Sunday) from 11:00 AM to 7:00 PM. Book your consultation through our [Book here](/consultation)."
     },
     {
       "id": "consultation-7",
       "category": "Consultations",
       "question": "What are your consultation hours?",
-      "answer": "Our consultation hours are: Weekdays (Mon-Fri): 5:00 PM - 7:00 PM, Weekends (Sat-Sun): 11:00 AM - 7:00 PM. Visit our Consultation page to book your appointment."
+      "answer": "Our consultation hours are: Weekdays (Mon-Fri): 5:00 PM - 7:00 PM, Weekends (Sat-Sun): 11:00 AM - 7:00 PM. Visit our [Book here](/consultation) to book your appointment."
     },
     {
       "id": "general-9",

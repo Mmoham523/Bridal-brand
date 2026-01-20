@@ -25,27 +25,107 @@ export function ChatMessage({ message, onSlotSelect, onConsultationTypeSelect }:
       >
         {message.content && (
           <div className="text-sm leading-relaxed whitespace-pre-wrap break-words">
-            {message.content.split(/(\/[a-zA-Z0-9-]+)/g).map((part, index) => {
-              // Check if part looks like a route path
-              if (part.startsWith('/') && part.length > 1) {
-                return (
+            {(() => {
+              const content = message.content;
+              const parts: (string | JSX.Element)[] = [];
+              let lastIndex = 0;
+              
+              // Match markdown-style links: [text](/path) - more specific regex
+              const markdownLinkRegex = /\[([^\]]+)\]\((\/[a-zA-Z0-9-]+)\)/g;
+              let match;
+              
+              while ((match = markdownLinkRegex.exec(content)) !== null) {
+                // Add text before the link
+                if (match.index > lastIndex) {
+                  const beforeText = content.substring(lastIndex, match.index);
+                  if (beforeText) {
+                    parts.push(beforeText);
+                  }
+                }
+                
+                // Add the link
+                const linkText = match[1];
+                const linkPath = match[2];
+                parts.push(
                   <Link
-                    key={index}
-                    to={part}
-                    className="text-primary underline hover:text-primary-hover font-medium"
-                    onClick={() => {
-                      // Close chat when navigating
-                      if (window.location.pathname !== part) {
-                        window.location.href = part;
-                      }
+                    key={`link-${match.index}`}
+                    to={linkPath}
+                    className="text-primary hover:text-primary-hover font-medium"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      window.location.href = linkPath;
                     }}
                   >
-                    {part}
+                    {linkText}
                   </Link>
                 );
+                
+                lastIndex = markdownLinkRegex.lastIndex;
               }
-              return <span key={index}>{part}</span>;
-            })}
+              
+              // Add remaining text after the last link
+              if (lastIndex < content.length) {
+                const remainingText = content.substring(lastIndex);
+                if (remainingText) {
+                  // Check if there are plain path links in remaining text
+                  const plainPathRegex = /(\/[a-zA-Z0-9-]+)/g;
+                  let pathMatch;
+                  let textLastIndex = 0;
+                  const textParts: (string | JSX.Element)[] = [];
+                  
+                  while ((pathMatch = plainPathRegex.exec(remainingText)) !== null) {
+                    // Add text before the path
+                    if (pathMatch.index > textLastIndex) {
+                      textParts.push(remainingText.substring(textLastIndex, pathMatch.index));
+                    }
+                    
+                    // Add the link
+                    const linkPath = pathMatch[1];
+                    const linkTexts: { [key: string]: string } = {
+                      '/consultation': 'Book here',
+                      '/contact': 'Contact page',
+                      '/shop': 'Shop page',
+                      '/gallery': 'Gallery page',
+                    };
+                    const linkText = linkTexts[linkPath] || linkPath;
+                    
+                    textParts.push(
+                      <Link
+                        key={`path-${pathMatch.index}`}
+                        to={linkPath}
+                        className="text-primary hover:text-primary-hover font-medium"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          window.location.href = linkPath;
+                        }}
+                      >
+                        {linkText}
+                      </Link>
+                    );
+                    
+                    textLastIndex = plainPathRegex.lastIndex;
+                  }
+                  
+                  // Add remaining text
+                  if (textLastIndex < remainingText.length) {
+                    textParts.push(remainingText.substring(textLastIndex));
+                  }
+                  
+                  if (textParts.length > 0) {
+                    parts.push(...textParts);
+                  } else {
+                    parts.push(remainingText);
+                  }
+                }
+              }
+              
+              // If no links were found at all, return the original content
+              if (parts.length === 0) {
+                return content;
+              }
+              
+              return parts;
+            })()}
           </div>
         )}
         

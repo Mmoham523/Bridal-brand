@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageSquare, X, Minimize2, Send, Bot } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -37,6 +37,18 @@ export function AIFaqChatbot({
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  
+  // Initialize quick questions cache with default questions
+  const getDefaultQuestions = (): string[] => {
+    return [
+      'How do I know my size?',
+      'How long does delivery take?',
+      'Can diracs be altered?',
+      'How do I book a consultation?',
+    ];
+  };
+  
+  const [quickQuestionsCache, setQuickQuestionsCache] = useState<string[]>(getDefaultQuestions());
   const [bookingState, setBookingState] = useState<BookingState>(null);
   const [bookingInfo, setBookingInfo] = useState<BookingInfo>({});
   const [availableSlots, setAvailableSlots] = useState<Array<{ date: string; slots: Array<{ time: string; displayTime: string }> }>>([]);
@@ -53,6 +65,37 @@ export function AIFaqChatbot({
       setTimeout(() => inputRef.current?.focus(), 100);
     }
   }, [messages, isOpen, isMinimized]);
+
+  // Memoize quick questions display logic to prevent re-renders while typing
+  const quickQuestionsDisplay = useMemo(() => {
+    // Show quick questions if:
+    // 1. It's the initial greeting (messages.length === 1), OR
+    // 2. The last message is from assistant and we're not loading
+    const lastMessage = messages[messages.length - 1];
+    const shouldShow = 
+      (messages.length === 1 && !isLoading) || 
+      (lastMessage?.role === 'assistant' && !isLoading && messages.length > 1);
+    
+    if (!shouldShow || quickQuestionsCache.length === 0) return null;
+    
+    return (
+      <div className="px-4 py-2 bg-muted/50 border-t border-border">
+        <p className="text-xs text-muted-foreground mb-2">Quick questions:</p>
+        <div className="grid grid-cols-2 gap-2">
+          {quickQuestionsCache.slice(0, 4).map((question, idx) => (
+            <button
+              key={`${question}-${idx}`}
+              onClick={() => sendMessage(question)}
+              className="text-xs px-3 py-2 bg-background border border-border rounded-md hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors text-center"
+              disabled={isLoading}
+            >
+              {question}
+            </button>
+          ))}
+        </div>
+      </div>
+    );
+  }, [messages.length, isLoading, quickQuestionsCache, messages]);
 
   // BOOKING FUNCTIONALITY DISABLED - Requires Acuity API upgrade
   // Uncomment below when API access is available
@@ -252,7 +295,7 @@ export function AIFaqChatbot({
     
     if (consultationKeywords.some(keyword => lowerQuery.includes(keyword)) && 
         !excludeFromBookingRedirect.some(exclude => lowerQuery.includes(exclude))) {
-      return "I'd be happy to help you book a consultation! You can book directly through our consultation page where you can see all available time slots and choose between in-person or virtual consultations.\n\n👉 Book Your Consultation: /consultation\n\nIf you have any questions about what to expect during your consultation, feel free to ask!";
+      return "I'd be happy to help you book a consultation! You can book directly through our consultation page where you can see all available time slots and choose between in-person or virtual consultations.\n\n👉 [Book here](/consultation)\n\nIf you have any questions about what to expect during your consultation, feel free to ask!";
     }
     
     const queryWords = lowerQuery.split(/\s+/).filter(w => w.length > 2);
@@ -770,14 +813,18 @@ export function AIFaqChatbot({
       // Regular FAQ handling
       const answer = findFAQAnswer(content.trim());
 
-      const assistantMessage: MessageType = {
-        id: (Date.now() + 1).toString(),
-        role: 'assistant',
-        content: answer,
-        timestamp: new Date(),
-      };
+          const assistantMessage: MessageType = {
+            id: (Date.now() + 1).toString(),
+            role: 'assistant',
+            content: answer,
+            timestamp: new Date(),
+          };
 
-      setMessages(prev => [...prev, assistantMessage]);
+          setMessages(prev => [...prev, assistantMessage]);
+          
+          // Update quick questions cache after assistant responds
+          const contextualQuestions = getContextualQuestions(assistantMessage);
+          setQuickQuestionsCache(contextualQuestions);
     } catch (err) {
       console.error('Chat error:', err);
       setError('I\'m having trouble processing your question. Please try again.');
@@ -790,6 +837,10 @@ export function AIFaqChatbot({
       };
       
       setMessages(prev => [...prev, errorMessage]);
+      
+      // Update quick questions cache after error message
+      const contextualQuestions = getContextualQuestions(errorMessage);
+      setQuickQuestionsCache(contextualQuestions);
     } finally {
       setIsLoading(false);
     }
@@ -800,12 +851,116 @@ export function AIFaqChatbot({
     sendMessage(inputValue);
   };
 
-  const quickQuestions = [
-    'How do I know my size?',
-    'How long does delivery take?',
-    'Can diracs be altered?',
-    'How do I book a consultation?',
-  ];
+  // Pool of questions organized by category
+  const questionPool: { [key: string]: string[] } = {
+    'sizing': [
+      'How do I know my size?',
+      'Can diracs be altered?',
+      'How do bridal sizes compare to regular clothing sizes?',
+      'How do I measure myself for a dirac?',
+    ],
+    'delivery': [
+      'How long does delivery take?',
+      'How much does delivery cost?',
+      'What are your delivery options?',
+      'Do you ship internationally?',
+    ],
+    'pricing': [
+      'What is the price range for your diracs?',
+      'How much does tailoring cost?',
+      'What collections do you have?',
+      'Do you require a deposit for custom orders?',
+    ],
+    'consultation': [
+      'How do I book a consultation?',
+      'What should I bring to my consultation?',
+      'What are your availability times?',
+      'Can I bring guests to my consultation?',
+    ],
+    'returns': [
+      'What is your return policy?',
+      'Can I exchange my dirac?',
+      'How long do refunds take?',
+      'Can I return sale items?',
+    ],
+    'general': [
+      'What is your email address?',
+      'Where are you located?',
+      'What are your business hours?',
+      'What payment methods do you accept?',
+    ],
+  };
+
+  // Get contextually relevant questions based on the last assistant message
+  const getContextualQuestions = (lastMessage: MessageType | undefined): string[] => {
+    if (!lastMessage || lastMessage.role !== 'assistant') {
+      // Default questions for initial greeting
+      return [
+        'How do I know my size?',
+        'How long does delivery take?',
+        'Can diracs be altered?',
+        'How do I book a consultation?',
+      ];
+    }
+
+    const messageContent = lastMessage.content.toLowerCase();
+    const selectedCategories: string[] = [];
+    const usedQuestions = new Set<string>();
+
+    // Determine which categories are relevant based on the message content
+    if (messageContent.includes('size') || messageContent.includes('sizing') || messageContent.includes('fit') || messageContent.includes('measurement')) {
+      selectedCategories.push('sizing');
+    }
+    if (messageContent.includes('delivery') || messageContent.includes('shipping') || messageContent.includes('ship')) {
+      selectedCategories.push('delivery');
+    }
+    if (messageContent.includes('price') || messageContent.includes('cost') || messageContent.includes('pricing') || messageContent.includes('collection')) {
+      selectedCategories.push('pricing');
+    }
+    if (messageContent.includes('consultation') || messageContent.includes('appointment') || messageContent.includes('book') || messageContent.includes('availability')) {
+      selectedCategories.push('consultation');
+    }
+    if (messageContent.includes('return') || messageContent.includes('refund') || messageContent.includes('exchange')) {
+      selectedCategories.push('returns');
+    }
+    if (messageContent.includes('email') || messageContent.includes('address') || messageContent.includes('location') || messageContent.includes('contact')) {
+      selectedCategories.push('general');
+    }
+
+    // If no specific category matched, use a mix
+    if (selectedCategories.length === 0) {
+      selectedCategories.push('sizing', 'delivery', 'pricing', 'consultation');
+    }
+
+    // Collect questions from relevant categories, avoiding duplicates
+    const relevantQuestions: string[] = [];
+    
+    // First, add questions from the matched categories (but not the same category as the answer)
+    selectedCategories.forEach(category => {
+      const questions = questionPool[category] || [];
+      questions.forEach(q => {
+        if (!relevantQuestions.includes(q) && !messageContent.includes(q.toLowerCase().substring(0, 20))) {
+          relevantQuestions.push(q);
+        }
+      });
+    });
+
+    // If we don't have enough, add from other categories
+    const allCategories = Object.keys(questionPool);
+    for (const category of allCategories) {
+      if (relevantQuestions.length >= 4) break;
+      if (!selectedCategories.includes(category)) {
+        questionPool[category].forEach(q => {
+          if (relevantQuestions.length < 4 && !relevantQuestions.includes(q) && !messageContent.includes(q.toLowerCase().substring(0, 20))) {
+            relevantQuestions.push(q);
+          }
+        });
+      }
+    }
+
+    // Return 4 questions, shuffled for variety
+    return relevantQuestions.slice(0, 4).sort(() => Math.random() - 0.5);
+  };
 
   const positionClasses = position === 'bottom-right' 
     ? 'bottom-4 right-4 md:bottom-6 md:right-6' 
@@ -897,24 +1052,8 @@ export function AIFaqChatbot({
                   <div ref={messagesEndRef} />
                 </div>
 
-                {/* Quick Questions */}
-                {messages.length === 1 && (
-                  <div className="px-4 py-2 bg-muted/50 border-t border-border">
-                    <p className="text-xs text-muted-foreground mb-2">Quick questions:</p>
-                    <div className="flex flex-wrap gap-2">
-                      {quickQuestions.map((question, idx) => (
-                        <button
-                          key={idx}
-                          onClick={() => sendMessage(question)}
-                          className="text-xs px-3 py-1 bg-background border border-border rounded-full hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors"
-                          disabled={isLoading}
-                        >
-                          {question}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                )}
+                {/* Quick Questions - Show after assistant messages */}
+                {quickQuestionsDisplay}
 
                 {/* Input Area */}
                 <form onSubmit={handleSubmit} className="p-4 bg-card border-t border-border">
