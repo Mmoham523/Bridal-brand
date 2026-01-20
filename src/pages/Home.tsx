@@ -35,14 +35,17 @@ const howItWorks = [
 
 const testimonials = [
   {
+    id: 'testimonial-1',
     name: 'Bride 2025',
     quote: 'The team at Hiyam Bridal made me feel like a princess. My dress fit perfectly and I received so many compliments.',
   },
   {
+    id: 'testimonial-2',
     name: 'Bride 2025',
     quote: 'From consultation to delivery, the experience was absolutely seamless. I could not have asked for a more beautiful gown.',
   },
   {
+    id: 'testimonial-3',
     name: 'Bride 2025',
     quote: 'The attention to detail and craftsmanship is exceptional. My veil was exactly what I envisioned for my wedding day.',
   },
@@ -72,7 +75,7 @@ export default function Home() {
             animate={{ scale: 1 }}
             transition={{ duration: 2.5, ease: "easeOut" }}
             loading="eager"
-            fetchPriority="high"
+            fetchpriority="high"
           />
           {/* Desktop Background */}
           <motion.img
@@ -83,7 +86,7 @@ export default function Home() {
             animate={{ scale: 1 }}
             transition={{ duration: 2.5, ease: "easeOut" }}
             loading="eager"
-            fetchPriority="high"
+            fetchpriority="high"
           />
           <div className="absolute inset-0 bg-black/30" />
           <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent" />
@@ -327,7 +330,7 @@ export default function Home() {
           >
             {testimonials.map((testimonial) => (
               <motion.div
-                key={testimonial.name}
+                key={testimonial.id}
                 variants={fadeInUp}
                 className="rounded-lg p-8 shadow-card hover-lift text-center"
                 style={{ backgroundColor: '#F3ECE3' }}
