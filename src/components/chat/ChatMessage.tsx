@@ -1,4 +1,5 @@
 import { format } from 'date-fns';
+import { Link } from 'react-router-dom';
 import { Message } from '@/types/chat';
 import { TimeSlotPicker } from './TimeSlotPicker';
 import { ConsultationTypePicker } from './ConsultationTypePicker';
@@ -23,9 +24,29 @@ export function ChatMessage({ message, onSlotSelect, onConsultationTypeSelect }:
         }`}
       >
         {message.content && (
-          <p className="text-sm leading-relaxed whitespace-pre-wrap break-words">
-            {message.content}
-          </p>
+          <div className="text-sm leading-relaxed whitespace-pre-wrap break-words">
+            {message.content.split(/(\/[a-zA-Z0-9-]+)/g).map((part, index) => {
+              // Check if part looks like a route path
+              if (part.startsWith('/') && part.length > 1) {
+                return (
+                  <Link
+                    key={index}
+                    to={part}
+                    className="text-primary underline hover:text-primary-hover font-medium"
+                    onClick={() => {
+                      // Close chat when navigating
+                      if (window.location.pathname !== part) {
+                        window.location.href = part;
+                      }
+                    }}
+                  >
+                    {part}
+                  </Link>
+                );
+              }
+              return <span key={index}>{part}</span>;
+            })}
+          </div>
         )}
         
         {message.type === 'consultation-type' && onConsultationTypeSelect && (

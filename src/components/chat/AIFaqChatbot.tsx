@@ -54,6 +54,9 @@ export function AIFaqChatbot({
     }
   }, [messages, isOpen, isMinimized]);
 
+  // BOOKING FUNCTIONALITY DISABLED - Requires Acuity API upgrade
+  // Uncomment below when API access is available
+  /*
   // Detect booking intent
   const detectBookingIntent = (query: string): boolean => {
     const lowerQuery = query.toLowerCase();
@@ -79,7 +82,11 @@ export function AIFaqChatbot({
     
     return null;
   };
+  */
 
+  // BOOKING FUNCTIONALITY DISABLED - Requires Acuity API upgrade
+  // Uncomment below when API access is available
+  /*
   // Parse natural language for dates
   const parseDate = (query: string): { startDate: string; endDate: string } => {
     const lowerQuery = query.toLowerCase();
@@ -189,6 +196,11 @@ export function AIFaqChatbot({
     return info;
   };
 
+  */
+
+  // BOOKING FUNCTIONALITY DISABLED - Requires Acuity API upgrade
+  // Uncomment below when API access is available
+  /*
   // Fetch availability from Acuity
   const fetchAvailability = async (appointmentTypeId: number, startDate: string, endDate: string) => {
     try {
@@ -223,6 +235,11 @@ export function AIFaqChatbot({
     }
   };
 
+  */
+
+  // BOOKING FUNCTIONALITY DISABLED - Requires Acuity API upgrade
+  // Uncomment below when API access is available
+  /*
   // Create booking in Acuity
   const createBooking = async (
     appointmentTypeId: number,
@@ -269,10 +286,24 @@ export function AIFaqChatbot({
       throw error;
     }
   };
+  */
 
   // Search through FAQs to find the best match
   const findFAQAnswer = (query: string): string => {
     const lowerQuery = query.toLowerCase();
+    
+    // Check for consultation/booking questions first - return direct link
+    const consultationKeywords = [
+      'book', 'booking', 'appointment', 'consultation', 'schedule',
+      'available', 'availability', 'this week', 'next week', 'when can',
+      'i want to book', 'i need to book', 'can i book', 'book me',
+      'how do i book', 'where do i book', 'book a consultation'
+    ];
+    
+    if (consultationKeywords.some(keyword => lowerQuery.includes(keyword))) {
+      return "I'd be happy to help you book a consultation! You can book directly through our consultation page where you can see all available time slots and choose between in-person or virtual consultations.\n\n👉 Book Your Consultation: /consultation\n\nIf you have any questions about what to expect during your consultation, feel free to ask!";
+    }
+    
     const queryWords = lowerQuery.split(/\s+/).filter(w => w.length > 2);
     
     const allFAQs: Array<{ question: string; answer: string; score: number }> = [];
@@ -299,7 +330,6 @@ export function AIFaqChatbot({
           'delivery': ['delivery', 'shipping', 'ship', 'deliver', 'arrive', 'when', 'how long'],
           'size': ['size', 'sizing', 'fit', 'measurement', 'measurements'],
           'return': ['return', 'refund', 'exchange'],
-          'consultation': ['consultation', 'book', 'booking', 'appointment', 'visit'],
           'contact': ['contact', 'email', 'phone', 'reach', 'location', 'where'],
           'price': ['price', 'cost', 'pricing', 'how much', 'expensive'],
           'alter': ['alter', 'alteration', 'alterations', 'adjust', 'modify'],
@@ -328,6 +358,9 @@ export function AIFaqChatbot({
     return "I'm not sure I have the exact answer to that question. Here are some topics I can help with:\n\n• Sizing and fit\n• Orders and shipping\n• Returns and exchanges\n• Consultations\n• General inquiries\n\nFeel free to ask me about any of these, or contact us directly through our Contact page for more specific questions.";
   };
 
+  // BOOKING FUNCTIONALITY DISABLED - Requires Acuity API upgrade
+  // Uncomment below when API access is available
+  /*
   // Handle consultation type selection
   const handleConsultationTypeSelect = async (type: 'in-person' | 'virtual') => {
     setBookingInfo(prev => ({ ...prev, appointmentType: type }));
@@ -394,6 +427,11 @@ export function AIFaqChatbot({
     }
   };
 
+  */
+
+  // BOOKING FUNCTIONALITY DISABLED - Requires Acuity API upgrade
+  // Uncomment below when API access is available
+  /*
   // Handle slot selection
   const handleSlotSelect = async (slot: { time: string; displayTime: string }) => {
     const slotAsTimeSlot = slot as TimeSlot;
@@ -437,6 +475,11 @@ export function AIFaqChatbot({
     });
   };
 
+  */
+
+  // BOOKING FUNCTIONALITY DISABLED - Requires Acuity API upgrade
+  // Uncomment below when API access is available
+  /*
   // Confirm and create booking
   const confirmBooking = async (slot: { time: string; displayTime: string }, info?: BookingInfo) => {
     // Use provided info or fall back to bookingInfo state
@@ -495,6 +538,7 @@ export function AIFaqChatbot({
       setIsLoading(false);
     }
   };
+  */
 
   const sendMessage = async (content: string) => {
     if (!content.trim() || isLoading) return;
@@ -514,6 +558,9 @@ export function AIFaqChatbot({
     await new Promise(resolve => setTimeout(resolve, 500));
 
     try {
+      // BOOKING FUNCTIONALITY DISABLED - Requires Acuity API upgrade
+      // Uncomment below when API access is available
+      /*
       // Check if we're in booking flow
       if (bookingState === 'collecting') {
         // Extract booking info from message
@@ -620,6 +667,11 @@ export function AIFaqChatbot({
         return;
       }
 
+      */
+
+      // BOOKING FUNCTIONALITY DISABLED - Requires Acuity API upgrade
+      // Uncomment below when API access is available
+      /*
       // Check if we're selecting consultation type
       if (bookingState === 'selecting-type') {
         const detectedType = detectConsultationType(content);
@@ -694,6 +746,11 @@ export function AIFaqChatbot({
         }
       }
 
+      */
+
+      // BOOKING FUNCTIONALITY DISABLED - Requires Acuity API upgrade
+      // Uncomment below when API access is available
+      /*
       // Check for booking intent
       if (detectBookingIntent(content)) {
         setBookingState('selecting-type');
@@ -710,6 +767,7 @@ export function AIFaqChatbot({
         setIsLoading(false);
         return;
       }
+      */
 
       // Regular FAQ handling
       const answer = findFAQAnswer(content.trim());
@@ -748,7 +806,7 @@ export function AIFaqChatbot({
     'How do I know my size?',
     'How long does delivery take?',
     'Can diracs be altered?',
-    'I want to book a consultation',
+    'How do I book a consultation?',
   ];
 
   const positionClasses = position === 'bottom-right' 
@@ -827,8 +885,9 @@ export function AIFaqChatbot({
                     <ChatMessage 
                       key={message.id} 
                       message={message}
-                      onSlotSelect={handleSlotSelect}
-                      onConsultationTypeSelect={handleConsultationTypeSelect}
+                      // BOOKING FUNCTIONALITY DISABLED - Requires Acuity API upgrade
+                      // onSlotSelect={handleSlotSelect}
+                      // onConsultationTypeSelect={handleConsultationTypeSelect}
                     />
                   ))}
                   {isLoading && <TypingIndicator />}
@@ -866,7 +925,7 @@ export function AIFaqChatbot({
                       ref={inputRef}
                       value={inputValue}
                       onChange={(e) => setInputValue(e.target.value)}
-                      placeholder={bookingState === 'collecting' ? "Enter your name and email..." : "Type your question..."}
+                      placeholder="Type your question..."
                       disabled={isLoading}
                       className="flex-1"
                       onKeyDown={(e) => {
