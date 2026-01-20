@@ -16,22 +16,25 @@ export function ChatbotWelcomeBanner({ onOpenChat, position = 'bottom-right' }: 
 
   useEffect(() => {
     // Check if banner was previously dismissed
-    const wasDismissed = localStorage.getItem(STORAGE_KEY) === 'true';
+    const storageValue = localStorage.getItem(STORAGE_KEY);
+    const wasDismissed = storageValue === 'dismissed';
     
     if (wasDismissed) {
       setHasCheckedStorage(true);
       return;
     }
 
-    // Check if this is first visit (no storage entry)
-    const isFirstVisit = !localStorage.getItem(STORAGE_KEY);
+    // Check if this is first visit (no storage entry at all)
+    const isFirstVisit = storageValue === null;
     
     if (isFirstVisit) {
       // First visit: show immediately
       setHasCheckedStorage(true);
       setIsVisible(true);
-    } else {
-      // Returning visitor: show after delay
+      // Mark that we've shown it (but not dismissed)
+      localStorage.setItem(STORAGE_KEY, 'shown');
+    } else if (storageValue === 'shown') {
+      // Returning visitor (was shown before but not dismissed): show after delay
       setHasCheckedStorage(true);
       const timer = setTimeout(() => {
         setIsVisible(true);
@@ -43,7 +46,7 @@ export function ChatbotWelcomeBanner({ onOpenChat, position = 'bottom-right' }: 
 
   const handleDismiss = () => {
     setIsVisible(false);
-    localStorage.setItem(STORAGE_KEY, 'true');
+    localStorage.setItem(STORAGE_KEY, 'dismissed');
   };
 
   const handleClick = () => {
