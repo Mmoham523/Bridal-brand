@@ -235,14 +235,23 @@ export function AIFaqChatbot({
     const lowerQuery = query.toLowerCase();
     
     // Check for consultation/booking questions first - return direct link
+    // BUT exclude questions about what to bring, what happens, etc. (these should use FAQs)
     const consultationKeywords = [
-      'book', 'booking', 'appointment', 'consultation', 'schedule',
-      'available', 'availability', 'this week', 'next week', 'when can',
+      'book', 'booking', 'appointment', 'schedule',
+      'this week', 'next week', 'when can',
       'i want to book', 'i need to book', 'can i book', 'book me',
       'how do i book', 'where do i book', 'book a consultation'
     ];
     
-    if (consultationKeywords.some(keyword => lowerQuery.includes(keyword))) {
+    // Only trigger booking redirect if it's actually about booking, not about consultation details
+    // Exclude questions that should match FAQs instead
+    const excludeFromBookingRedirect = [
+      'what should i bring', 'what to bring', 'what happens', 'what do i need',
+      'what to expect', 'what happens if', 'can i bring', 'bring to'
+    ];
+    
+    if (consultationKeywords.some(keyword => lowerQuery.includes(keyword)) && 
+        !excludeFromBookingRedirect.some(exclude => lowerQuery.includes(exclude))) {
       return "I'd be happy to help you book a consultation! You can book directly through our consultation page where you can see all available time slots and choose between in-person or virtual consultations.\n\n👉 Book Your Consultation: /consultation\n\nIf you have any questions about what to expect during your consultation, feel free to ask!";
     }
     
@@ -257,30 +266,77 @@ export function AIFaqChatbot({
       
       let score = 0;
       
+      // Exact match gets highest score
       if (lowerQuestion === lowerQuery) {
         score = 100;
-      } else if (lowerQuestion.includes(lowerQuery) || lowerQuery.includes(lowerQuestion.split('?')[0])) {
+      } 
+      // Check if question contains the query or vice versa
+      else if (lowerQuestion.includes(lowerQuery) || lowerQuery.includes(lowerQuestion.split('?')[0].trim())) {
         score += 50;
-      } else {
+      }
+      // Check for specific keyword matches with higher priority
+      else {
+        // Physical address/location matching (highest priority - check FIRST before email)
+        // This must come before email matching to avoid conflicts
+        const isLocationQuery = (lowerQuery.includes('address') && !lowerQuery.includes('email')) || 
+            lowerQuery.includes('where are you') || 
+            lowerQuery.includes('where is your') ||
+            (lowerQuery.includes('location') && !lowerQuery.includes('email')) || 
+            lowerQuery.includes('boutique') || 
+            lowerQuery.includes('located') ||
+            lowerQuery.includes('physical address') ||
+            lowerQuery.includes('mailing address');
+            
+        if (isLocationQuery) {
+          if (lowerQuestion.includes('address') || lowerQuestion.includes('location') || lowerQuestion.includes('boutique') || lowerQuestion.includes('located')) {
+            score += 50; // Highest priority for location questions
+          }
+        }
+        
+        // Email-specific matching (high priority) - but NOT for physical address
+        // Only match if query explicitly mentions email AND it's not a location question
+        if (!isLocationQuery && 
+            (lowerQuery.includes('email') || lowerQuery.includes('contact email') || lowerQuery.includes('email address')) && 
+            (lowerQuestion.includes('email') || (lowerCategory.includes('general') && lowerQuestion.includes('email')))) {
+          score += 40;
+        }
+        
+        // Availability-specific matching (high priority)
+        if ((lowerQuery.includes('availability') || lowerQuery.includes('available times') || lowerQuery.includes('consultation hours') || lowerQuery.includes('when are you available')) && 
+            (lowerQuestion.includes('availability') || lowerQuestion.includes('available') || lowerCategory.includes('consultation'))) {
+          score += 40;
+        }
+        
+        // Collection-specific matching
+        if ((lowerQuery.includes('collection') || lowerQuery.includes('collections')) && 
+            (lowerQuestion.includes('collection') || lowerCategory.includes('pricing'))) {
+          score += 35;
+        }
+        
+        // Word matching
         queryWords.forEach(word => {
           if (lowerQuestion.includes(word)) score += 10;
           if (lowerAnswer.includes(word)) score += 5;
           if (lowerCategory.includes(word)) score += 3;
         });
         
+        // Category keyword matching (but with lower priority than specific matches)
         const keywords: { [key: string]: string[] } = {
-          'delivery': ['delivery', 'shipping', 'ship', 'deliver', 'arrive', 'when', 'how long'],
+          'delivery': ['delivery', 'shipping', 'ship', 'deliver'],
           'size': ['size', 'sizing', 'fit', 'measurement', 'measurements'],
           'return': ['return', 'refund', 'exchange'],
-          'contact': ['contact', 'email', 'phone', 'reach', 'location', 'where'],
+          'contact': ['contact', 'phone', 'reach', 'location', 'where'],
           'price': ['price', 'cost', 'pricing', 'how much', 'expensive'],
           'alter': ['alter', 'alteration', 'alterations', 'adjust', 'modify'],
         };
         
         Object.entries(keywords).forEach(([category, terms]) => {
-          if (terms.some(term => lowerQuery.includes(term))) {
-            if (lowerCategory.includes(category) || lowerQuestion.includes(category)) {
-              score += 15;
+          // Only boost if it's NOT an email or availability question (to avoid conflicts)
+          if (!lowerQuery.includes('email') && !lowerQuery.includes('availability') && !lowerQuery.includes('available times')) {
+            if (terms.some(term => lowerQuery.includes(term))) {
+              if (lowerCategory.includes(category) || lowerQuestion.includes(category)) {
+                score += 15;
+              }
             }
           }
         });

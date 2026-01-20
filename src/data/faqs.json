@@ -3,28 +3,28 @@
     {
       "id": "sizing-1",
       "category": "Sizing & Fit",
-      "question": "How do I know my size?",
+          "question": "How do I know my size?",
       "answer": "We recommend booking a consultation for accurate measurements. Our sizes follow UK bridal standards. Our expert team will take your measurements and help you find the perfect fit."
-    },
-    {
+        },
+        {
       "id": "sizing-2",
       "category": "Sizing & Fit",
-      "question": "Can diracs be altered?",
+          "question": "Can diracs be altered?",
       "answer": "Yes, all our diracs can be altered. We recommend having alterations done 4-6 weeks before your wedding to ensure the perfect fit. Our skilled tailors will work with you to make any necessary adjustments."
     },
     {
       "id": "shipping-1",
       "category": "Orders & Shipping",
-      "question": "How long does delivery take?",
-      "answer": "Standard delivery is 5-7 business days. Custom orders take 12-16 weeks from the time of order confirmation. We'll keep you updated throughout the process."
-    },
-    {
+          "question": "How long does delivery take?",
+          "answer": "Standard delivery is 5-7 business days. Custom orders take 12-16 weeks from the time of order confirmation. We'll keep you updated throughout the process."
+        },
+        {
       "id": "shipping-2",
       "category": "Orders & Shipping",
-      "question": "Do you ship internationally?",
-      "answer": "Yes, we ship worldwide. Contact us for international shipping rates and delivery times. We'll ensure your dirac arrives safely and on time."
-    },
-    {
+          "question": "Do you ship internationally?",
+          "answer": "Yes, we ship worldwide. Contact us for international shipping rates and delivery times. We'll ensure your dirac arrives safely and on time."
+        },
+        {
       "id": "returns-1",
       "category": "Returns & Exchanges",
       "question": "What is your return policy?",
@@ -58,7 +58,25 @@
       "id": "general-2",
       "category": "General",
       "question": "Where are you located?",
-      "answer": "Please visit our Contact page for our location and contact details. We'd love to welcome you to our boutique or assist you virtually."
+      "answer": "We are located at Unit 4, Bilqees Mall, 11a Walford Rd, Sparkbrook, Birmingham B11 1NP. We'd love to welcome you to our boutique or assist you virtually through our virtual consultations."
+    },
+    {
+      "id": "general-11",
+      "category": "General",
+      "question": "What is your address?",
+      "answer": "Our boutique is located at Unit 4, Bilqees Mall, 11a Walford Rd, Sparkbrook, Birmingham B11 1NP. Please visit our Contact page for directions and to book a consultation."
+    },
+    {
+      "id": "general-12",
+      "category": "General",
+      "question": "Where is your boutique?",
+      "answer": "Our boutique is at Unit 4, Bilqees Mall, 11a Walford Rd, Sparkbrook, Birmingham B11 1NP. We offer both in-person and virtual consultations - you can book through our Consultation page."
+    },
+    {
+      "id": "general-13",
+      "category": "General",
+      "question": "What is your location?",
+      "answer": "We are located at Unit 4, Bilqees Mall, 11a Walford Rd, Sparkbrook, Birmingham B11 1NP. Visit our Contact page for more information and to book your consultation."
     },
     {
       "id": "general-3",
@@ -161,6 +179,48 @@
       "category": "General",
       "question": "What is your email address?",
       "answer": "You can reach us at hiyambridal@gmail.com. We typically respond to all inquiries within 24-48 hours. For urgent matters, please call us directly."
+    },
+    {
+      "id": "general-7",
+      "category": "General",
+      "question": "What is your email?",
+      "answer": "Our email address is hiyambridal@gmail.com. We respond to all inquiries within 24-48 hours."
+    },
+    {
+      "id": "general-8",
+      "category": "General",
+      "question": "How can I contact you by email?",
+      "answer": "You can email us at hiyambridal@gmail.com. We typically respond within 24-48 hours."
+    },
+    {
+      "id": "consultation-5",
+      "category": "Consultations",
+      "question": "What are your availability times?",
+      "answer": "Our consultation availability times are: Monday to Friday: 5:00 PM - 7:00 PM, Saturday and Sunday: 11:00 AM - 7:00 PM. You can book a consultation through our Consultation page."
+    },
+    {
+      "id": "consultation-6",
+      "category": "Consultations",
+      "question": "When are you available for consultations?",
+      "answer": "We're available for consultations Monday to Friday from 5:00 PM to 7:00 PM, and on weekends (Saturday and Sunday) from 11:00 AM to 7:00 PM. Book your consultation through our Consultation page."
+    },
+    {
+      "id": "consultation-7",
+      "category": "Consultations",
+      "question": "What are your consultation hours?",
+      "answer": "Our consultation hours are: Weekdays (Mon-Fri): 5:00 PM - 7:00 PM, Weekends (Sat-Sun): 11:00 AM - 7:00 PM. Visit our Consultation page to book your appointment."
+    },
+    {
+      "id": "general-9",
+      "category": "General",
+      "question": "What collections do you have?",
+      "answer": "We have three main collections: Safaa Collection (£395 without tailoring, £450 with tailoring), Bilqees Collection (£395 without tailoring, £450 with tailoring), and Ayah Collection (£375 without tailoring, £430 with tailoring). We also offer custom and made-to-measure options - book a consultation to discuss these."
+    },
+    {
+      "id": "general-10",
+      "category": "General",
+      "question": "What are your different collections?",
+      "answer": "Our collections include: Safaa Collection and Bilqees Collection (both £395 without tailoring or £450 with tailoring), and Ayah Collection (£375 without tailoring or £430 with tailoring). We also offer custom and made-to-measure options - please book a consultation to discuss pricing for these."
     },
     {
       "id": "general-5",
