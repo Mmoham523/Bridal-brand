@@ -131,72 +131,14 @@ export function AIFaqChatbot({
       endDate: endDate.toISOString().split('T')[0],
     };
   };
-
-  // Extract name and email from natural language
-  const extractBookingInfo = (query: string): Partial<BookingInfo> => {
-    const info: Partial<BookingInfo> = {};
-    
-    // Extract email first (remove it from query for name extraction)
-    // Improved email regex to catch more patterns
-    const emailRegex = /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/gi;
-    const emailMatch = query.match(emailRegex);
-    if (emailMatch && emailMatch.length > 0) {
-      info.email = emailMatch[0].toLowerCase().trim();
-      console.log('📧 Extracted email:', info.email);
-      // Remove email from query to help with name extraction
-      query = query.replace(emailRegex, '').trim();
-    }
-
-    // Extract name - improved patterns to handle various formats
-    // Remove common phrases first
-    let nameText = query
-      .replace(/^(i'?m|i am|my name is|this is|it'?s|name:|full name:|my name|name)\s*/i, '')
-      .trim();
-
-    // Split into words and filter out empty strings
-    const words = nameText.split(/\s+/).filter(w => w.length > 0 && !w.match(/^[.,;:!?]+$/));
-    
-    if (words.length === 0) {
-      console.log('📝 No name text found');
-      return info; // No text to extract from
-    }
-
-    console.log('📝 Processing name words:', words);
-
-    // Pattern 1: Two or more words where first two start with capital letters
-    // This handles "Mustafa Mohamed" perfectly
-    if (words.length >= 2) {
-      const firstWord = words[0];
-      const secondWord = words[1];
-      
-      // Check if both words start with capital letters (name pattern)
-      // Allow for names that might be all caps or mixed case
-      const isCapitalized = (word: string) => {
-        return /^[A-Z]/.test(word) && /^[A-Za-z]+$/.test(word);
-      };
-      
-      if (isCapitalized(firstWord) && isCapitalized(secondWord)) {
-        info.firstName = firstWord;
-        info.lastName = words.slice(1).join(' ');
-        console.log('✅ Extracted full name:', info.firstName, info.lastName);
-        return info;
-      }
-    }
-
-    // Pattern 2: Single word that looks like a name (capitalized, reasonable length)
-    if (words.length === 1) {
-      const word = words[0];
-      if (/^[A-Z][a-z]+$/.test(word) && word.length >= 2) {
-        info.firstName = word;
-        console.log('✅ Extracted first name:', info.firstName);
-        // Last name will be asked for separately
-      }
-    }
-
-    return info;
-  };
-
   */
+
+  // BOOKING FUNCTIONALITY DISABLED - Requires Acuity API upgrade
+  // All booking-related functions (extractBookingInfo, fetchAvailability, createBooking, etc.)
+  // are commented out in the codebase. To re-enable:
+  // 1. Search for "BOOKING FUNCTIONALITY DISABLED" comments
+  // 2. Uncomment the code blocks marked with /* ... */
+  // 3. Ensure Acuity API credentials are set in Netlify environment variables
 
   // BOOKING FUNCTIONALITY DISABLED - Requires Acuity API upgrade
   // Uncomment below when API access is available
