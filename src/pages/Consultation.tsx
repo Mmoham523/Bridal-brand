@@ -166,10 +166,13 @@ export default function Consultation() {
                 }}
                 className={`text-left p-8 rounded-lg border-2 transition-all duration-300 hover-lift ${
                   selectedType === type.id
-                    ? 'border-primary shadow-card'
-                    : 'border-border'
+                    ? 'shadow-card'
+                    : ''
                 }`}
-                style={{ backgroundColor: '#F3ECE3' }}
+                style={{ 
+                  backgroundColor: '#F3ECE3',
+                  borderColor: selectedType === type.id ? '#C8A19C' : '#C8A19C'
+                }}
               >
                 <type.icon className="h-8 w-8 text-foreground mb-4" />
                 <h3 className="heading-sm mb-2 text-foreground">{type.title}</h3>
@@ -193,7 +196,7 @@ export default function Consultation() {
             variants={fadeInUp}
             className="max-w-2xl mx-auto"
           >
-            <div className="p-8 md:p-12 rounded-lg shadow-card" style={{ backgroundColor: '#F3ECE3' }}>
+            <div className="p-8 md:p-12 rounded-lg shadow-card border-2" style={{ backgroundColor: '#F3ECE3', borderColor: '#C8A19C' }}>
               <h3 className="heading-md mb-6">Your Details</h3>
               
               <form onSubmit={handleSubmit} className="space-y-6">

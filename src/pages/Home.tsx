@@ -332,8 +332,8 @@ export default function Home() {
               <motion.div
                 key={testimonial.id}
                 variants={fadeInUp}
-                className="rounded-lg p-8 shadow-card hover-lift text-center"
-                style={{ backgroundColor: '#F3ECE3' }}
+                className="rounded-lg p-8 shadow-card hover-lift text-center border-2"
+                style={{ backgroundColor: '#F3ECE3', borderColor: '#C8A19C' }}
               >
                 <blockquote className="text-foreground leading-relaxed mb-6">
                   "{testimonial.quote}"
