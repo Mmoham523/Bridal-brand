@@ -2,6 +2,7 @@ import { ReactNode } from 'react';
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { CartDrawer } from '@/components/cart/CartDrawer';
+import { AIFaqChatbot } from '@/components/chat/AIFaqChatbot';
 
 interface LayoutProps {
   children: ReactNode;
@@ -14,6 +15,7 @@ export function Layout({ children }: LayoutProps) {
       <main className="flex-1">{children}</main>
       <Footer />
       <CartDrawer />
+      <AIFaqChatbot companyName="Hiyam Bridal" position="bottom-right" />
     </div>
   );
 }

@@ -1,0 +1,178 @@
+{
+  "faqs": [
+    {
+      "id": "sizing-1",
+      "category": "Sizing & Fit",
+      "question": "How do I know my size?",
+      "answer": "We recommend booking a consultation for accurate measurements. Our sizes follow UK bridal standards. Our expert team will take your measurements and help you find the perfect fit."
+    },
+    {
+      "id": "sizing-2",
+      "category": "Sizing & Fit",
+      "question": "Can diracs be altered?",
+      "answer": "Yes, all our diracs can be altered. We recommend having alterations done 4-6 weeks before your wedding to ensure the perfect fit. Our skilled tailors will work with you to make any necessary adjustments."
+    },
+    {
+      "id": "shipping-1",
+      "category": "Orders & Shipping",
+      "question": "How long does delivery take?",
+      "answer": "Standard delivery is 5-7 business days. Custom orders take 12-16 weeks from the time of order confirmation. We'll keep you updated throughout the process."
+    },
+    {
+      "id": "shipping-2",
+      "category": "Orders & Shipping",
+      "question": "Do you ship internationally?",
+      "answer": "Yes, we ship worldwide. Contact us for international shipping rates and delivery times. We'll ensure your dirac arrives safely and on time."
+    },
+    {
+      "id": "returns-1",
+      "category": "Returns & Exchanges",
+      "question": "What is your return policy?",
+      "answer": "Unworn items can be returned within 14 days of delivery in their original packaging. Custom orders are non-refundable as they are made specifically for you."
+    },
+    {
+      "id": "returns-2",
+      "category": "Returns & Exchanges",
+      "question": "Can I exchange my dirac?",
+      "answer": "Yes, exchanges are available within 14 days for unworn items in original packaging. Please contact us to arrange an exchange for a different size or style."
+    },
+    {
+      "id": "consultation-1",
+      "category": "Consultations",
+      "question": "How do I book a consultation?",
+      "answer": "You can book a consultation through our Consultation page. We offer both in-person and virtual consultations. Simply fill out the form and select your preferred consultation type."
+    },
+    {
+      "id": "consultation-2",
+      "category": "Consultations",
+      "question": "What should I bring to my consultation?",
+      "answer": "We recommend bringing: wedding shoes or heels of similar height, appropriate undergarments (strapless bra, shapewear if desired), inspiration photos or Pinterest boards, and trusted friends or family members (no limit)."
+    },
+    {
+      "id": "general-1",
+      "category": "General",
+      "question": "What are your business hours?",
+      "answer": "Our boutique hours vary. Please contact us through our Contact page or book a consultation to schedule a visit. We're here to help make your special day perfect."
+    },
+    {
+      "id": "general-2",
+      "category": "General",
+      "question": "Where are you located?",
+      "answer": "Please visit our Contact page for our location and contact details. We'd love to welcome you to our boutique or assist you virtually."
+    },
+    {
+      "id": "general-3",
+      "category": "General",
+      "question": "How can I contact you?",
+      "answer": "You can reach us through our Contact page. We respond to all inquiries within 24-48 hours. For urgent matters, please call us directly."
+    },
+    {
+      "id": "pricing-1",
+      "category": "Pricing",
+      "question": "What is the price range for your diracs?",
+      "answer": "Our collections are priced as follows: Safaa Collection and Bilqees Collection are £395 without tailoring or £450 with tailoring. Ayah Collection is £375 without tailoring or £430 with tailoring. We also offer custom and made-to-measure options - please book a consultation to discuss pricing for these. Use our Quick Quote tool on the website for instant pricing estimates."
+    },
+    {
+      "id": "pricing-2",
+      "category": "Pricing",
+      "question": "How much does tailoring cost?",
+      "answer": "Tailoring is included in our collection pricing. Safaa and Bilqees Collections are £450 with tailoring (£395 without). Ayah Collection is £430 with tailoring (£375 without). All our diracs can be altered, and we recommend having alterations done 4-6 weeks before your wedding."
+    },
+    {
+      "id": "pricing-3",
+      "category": "Pricing",
+      "question": "Do you require a deposit for custom orders?",
+      "answer": "Yes, custom and made-to-measure orders require a deposit (typically 50%) to commence production. The remaining balance is due before delivery. Custom orders are non-refundable once production has begun."
+    },
+    {
+      "id": "delivery-1",
+      "category": "Delivery & Shipping",
+      "question": "How much does delivery cost?",
+      "answer": "Standard UK delivery costs £10, but it's free on orders over £500. Express delivery (2-3 business days) costs £25 and is available for in-stock items only. International delivery costs vary by destination - please contact us at hiyambridal@gmail.com for a quote."
+    },
+    {
+      "id": "delivery-2",
+      "category": "Delivery & Shipping",
+      "question": "What are your delivery options?",
+      "answer": "We offer standard delivery (5-7 business days, £10 or free over £500) and express delivery (2-3 business days, £25) for UK orders. All orders are dispatched via tracked courier service, and you'll receive tracking information via email once your order is dispatched."
+    },
+    {
+      "id": "delivery-3",
+      "category": "Delivery & Shipping",
+      "question": "How long do custom orders take?",
+      "answer": "Custom orders take 12-16 weeks from the time of order confirmation. We will keep you updated throughout the production process, and delivery will be arranged once your order is ready."
+    },
+    {
+      "id": "delivery-4",
+      "category": "Delivery & Shipping",
+      "question": "Do you ship internationally?",
+      "answer": "Yes, we ship worldwide. International delivery times and costs vary by destination. Please contact us at hiyambridal@gmail.com for a quote. Please note that international customers are responsible for any customs duties and taxes."
+    },
+    {
+      "id": "returns-3",
+      "category": "Returns & Exchanges",
+      "question": "How do I return an item?",
+      "answer": "To return an item: 1) Contact us at hiyambridal@gmail.com to initiate a return, 2) Include your order number and reason for return, 3) We'll provide you with a returns authorization and instructions, 4) Package the item securely in its original packaging, 5) Return the item using the provided label or tracked service."
+    },
+    {
+      "id": "returns-4",
+      "category": "Returns & Exchanges",
+      "question": "How long do refunds take?",
+      "answer": "Refunds will be processed within 5-10 business days of receiving the returned item. Refunds will be issued to the original payment method. Please note that original shipping costs are non-refundable, and return shipping costs are the responsibility of the customer unless the item is faulty."
+    },
+    {
+      "id": "returns-5",
+      "category": "Returns & Exchanges",
+      "question": "Can I return sale items?",
+      "answer": "No, sale items are final sale and cannot be returned. Only unworn items in original condition with tags attached can be returned within 14 days of delivery."
+    },
+    {
+      "id": "returns-6",
+      "category": "Returns & Exchanges",
+      "question": "What if I receive a damaged item?",
+      "answer": "If you receive a damaged or faulty item, please contact us immediately at hiyambridal@gmail.com. We will arrange a replacement or full refund, including return shipping costs."
+    },
+    {
+      "id": "consultation-3",
+      "category": "Consultations",
+      "question": "What happens if I need to reschedule my consultation?",
+      "answer": "We understand plans change! You can reschedule your appointment up to 24 hours before your booking at no extra charge. Simply contact us via email or phone."
+    },
+    {
+      "id": "consultation-4",
+      "category": "Consultations",
+      "question": "Can I bring guests to my consultation?",
+      "answer": "Absolutely! You are welcome to bring guests whose opinions you value. Our boutique has comfortable seating for your party. There's no limit to how many people you can bring."
+    },
+    {
+      "id": "sizing-3",
+      "category": "Sizing & Fit",
+      "question": "How do bridal sizes compare to regular clothing sizes?",
+      "answer": "Bridal sizes typically run 1-2 sizes smaller than regular clothing sizes. For example, if you normally wear a size 10 in regular clothing, you might need a size 12 or 14 in bridal sizing. We strongly recommend booking a consultation for the most accurate measurements."
+    },
+    {
+      "id": "sizing-4",
+      "category": "Sizing & Fit",
+      "question": "How do I measure myself for a dirac?",
+      "answer": "For bust: Measure around the fullest part of your bust, keeping the tape level and parallel to the ground, wearing the undergarments you plan to wear on your wedding day. For waist: Measure around the narrowest part, typically just above your belly button, comfortably snug but not tight. For hips: Measure around the fullest part, approximately 7-9 inches below your waist. We recommend having someone help you for accuracy."
+    },
+    {
+      "id": "general-4",
+      "category": "General",
+      "question": "What is your email address?",
+      "answer": "You can reach us at hiyambridal@gmail.com. We typically respond to all inquiries within 24-48 hours. For urgent matters, please call us directly."
+    },
+    {
+      "id": "general-5",
+      "category": "General",
+      "question": "What payment methods do you accept?",
+      "answer": "We accept major credit and debit cards. All prices are in GBP (£) and include VAT where applicable. Payment must be received before we process your order."
+    },
+    {
+      "id": "general-6",
+      "category": "General",
+      "question": "When was Hiyam Bridal founded?",
+      "answer": "Hiyam Bridal was founded in 2018. We've dressed hundreds of brides in diracs crafted with meticulous attention to detail. Our boutique offers an intimate, personalised experience where you're not just a customer—you're family."
+    }
+  ]
+}

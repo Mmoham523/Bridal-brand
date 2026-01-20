@@ -1,0 +1,76 @@
+{
+  "faqs": [
+    {
+      "id": "sizing-1",
+      "category": "Sizing & Fit",
+      "question": "How do I know my size?",
+      "answer": "We recommend booking a consultation for accurate measurements. Our sizes follow UK bridal standards. Our expert team will take your measurements and help you find the perfect fit."
+    },
+    {
+      "id": "sizing-2",
+      "category": "Sizing & Fit",
+      "question": "Can diracs be altered?",
+      "answer": "Yes, all our diracs can be altered. We recommend having alterations done 4-6 weeks before your wedding to ensure the perfect fit. Our skilled tailors will work with you to make any necessary adjustments."
+    },
+    {
+      "id": "shipping-1",
+      "category": "Orders & Shipping",
+      "question": "How long does delivery take?",
+      "answer": "Standard delivery is 5-7 business days. Custom orders take 12-16 weeks from the time of order confirmation. We'll keep you updated throughout the process."
+    },
+    {
+      "id": "shipping-2",
+      "category": "Orders & Shipping",
+      "question": "Do you ship internationally?",
+      "answer": "Yes, we ship worldwide. Contact us for international shipping rates and delivery times. We'll ensure your dirac arrives safely and on time."
+    },
+    {
+      "id": "returns-1",
+      "category": "Returns & Exchanges",
+      "question": "What is your return policy?",
+      "answer": "Unworn items can be returned within 14 days of delivery in their original packaging. Custom orders are non-refundable as they are made specifically for you."
+    },
+    {
+      "id": "returns-2",
+      "category": "Returns & Exchanges",
+      "question": "Can I exchange my dirac?",
+      "answer": "Yes, exchanges are available within 14 days for unworn items in original packaging. Please contact us to arrange an exchange for a different size or style."
+    },
+    {
+      "id": "consultation-1",
+      "category": "Consultations",
+      "question": "How do I book a consultation?",
+      "answer": "You can book a consultation through our Consultation page. We offer both in-person and virtual consultations. Simply fill out the form and select your preferred consultation type."
+    },
+    {
+      "id": "consultation-2",
+      "category": "Consultations",
+      "question": "What should I bring to my consultation?",
+      "answer": "We recommend bringing: wedding shoes or heels of similar height, appropriate undergarments (strapless bra, shapewear if desired), inspiration photos or Pinterest boards, and trusted friends or family members (no limit)."
+    },
+    {
+      "id": "general-1",
+      "category": "General",
+      "question": "What are your business hours?",
+      "answer": "Our boutique hours vary. Please contact us through our Contact page or book a consultation to schedule a visit. We're here to help make your special day perfect."
+    },
+    {
+      "id": "general-2",
+      "category": "General",
+      "question": "Where are you located?",
+      "answer": "Please visit our Contact page for our location and contact details. We'd love to welcome you to our boutique or assist you virtually."
+    },
+    {
+      "id": "general-3",
+      "category": "General",
+      "question": "How can I contact you?",
+      "answer": "You can reach us through our Contact page. We respond to all inquiries within 24-48 hours. For urgent matters, please call us directly."
+    },
+    {
+      "id": "pricing-1",
+      "category": "Pricing",
+      "question": "What is the price range for your diracs?",
+      "answer": "Our diracs range in price depending on the style and customization. We offer both ready-to-wear and custom options. Please book a consultation to discuss pricing and find the perfect dirac within your budget."
+    }
+  ]
+}
